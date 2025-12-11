@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetic About Section</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe8f1, #dce8ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      background: #ffffffdd;
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      width: 1300px;
+      height: 400px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-section {
+      flex: 1;
+    }
+
+    .image-section img {
+      width: 75%;
+      height: 100%;
+      object-fit: cover;  /* ✅ Makes image fit without distortion */
+      display: block;
+    }
+
+    .content {
+      flex: 1;
+      padding: 50px;
+    }
+
+    .content h1 {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #444;
+      font-size: 28px;
+    }
+
+    .content p {
+      line-height: 1.7;
+      color: #555;
+      font-weight: 300;
+      font-size: 16px;
+    }
+
+    @media (max-width: 1000px) {
+      .container {
+        flex-direction: column;
+        width: 90%;
+      }
+
+      .image-section img {
+        height: 300px;
+      }
+
+      .content {
+        padding: 30px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="image-section">
+    <img src="Nilima.jpeg" alt="Your Image" />
+  </div>
+
+  <div class="content">
+    <h1>About Me</h1>
+    <p style="color:var(--muted);line-height:1.7">I am a results-driven Data Analyst focused on transforming complex, unstructured data into actionable business intelligence. My core strengths include SQL-driven analysis, scalable dashboard development, and Python-based Analytics. I prioritize accuracy, reproducibility, and clear communication — ensuring that insights are not just delivered, but understood and used to drive decisions.</p>
+          
+    <p style="color:var(--muted);line-height:1.7">If your team values rigorous analytics and strategic data thinking, I bring the expertise to elevate your data capabilities and support smarter, faster business outcomes.If you want a strong SQL-first analyst for analytics-heavy teams, Let's connect!</p>
+  </div>
+</div>
+
+</body>
+</html>
