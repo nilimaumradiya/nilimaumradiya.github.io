@@ -1,226 +1,885 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nilima Umaradiya — Data Analyst (SQL, Power BI, Python)</title>
-  <meta name="description" content="Portfolio of a Data Analyst skilled in SQL, Power BI, Python — projects, skills, experience and contact." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#94a3b8;
-      --accent:#06b6d4;
-      --glass: rgba(255,255,255,0.04);
-      --glass-2: rgba(255,255,255,0.02);
-      --text:#e6eef8;
-      --accent-2:#7c3aed;
-      --maxw:1300px;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071026 80%);color:var(--text);-webkit-font-smoothing:antialiased}
-    a{color:var(--accent)}
-
-    .container{max-width:var(--maxw);margin:10px auto;padding:10px}
-    .grid{display:grid;gap:20px}
-
-    /* Header / Hero */
-    .hero{display:grid;grid-template-columns:10px 1fr;gap:10px;align-items:center}
-    .photo{width:260px;height:260px;border-radius:16px;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 30px rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center}
-    .photo img{width:100%;height:100%;object-fit:cover}
-    .badge{font-size:12px;padding:6px 10px;border-radius:999px;background:var(--glass);display:inline-block;color:var(--muted);margin-bottom:12px}
-      h1{margin:0;font-size:28px;line-height:1.05}
-    .sub{color:var(--muted);margin-top:8px}
-    .cta{margin-top:18px;display:flex;gap:12px}
-    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041025;border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;text-decoration:none}
-    .btn.outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
-
-    /* Main sections */
-    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .card{background:linear-gradient(180deg,var(--card),#071022);border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
-    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-    .section-title h3{margin:0}
-    .skills{display:flex;flex-direction:column;gap:12px}
-
-    /* Progress bars */
-    .skill{display:flex;justify-content:space-between;gap:12px;align-items:center}
-    .skill .meta{min-width:110px;color:var(--muted);font-size:14px}
-    .progress{flex:1;height:10px;background:var(--glass-2);border-radius:999px;overflow:hidden}
-    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
-
-    /* Projects */
-    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    .project{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-    .project h4{margin:0 0 6px 0}
-    .project p{margin:0;color:var(--muted);font-size:14px}
-    .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted)}
-
-    /* Experience timeline */
-    .timeline{display:flex;flex-direction:column;gap:18px}
-    .job{display:flex;gap:12px}
-    .job .left{min-width:110px;color:var(--muted);font-size:14px}
-    .job .right h4{margin:0}
-    .job .right p{margin:6px 0 0 0;color:var(--muted)}
-
-    /* Contact */
-    .contact{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .input, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
-    textarea{min-height:120px}
-
-    /* Footer */
-    footer{margin-top:26px;color:var(--muted);text-align:center}
-
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;grid-auto-rows:auto}
-      .cards{grid-template-columns:1fr}
-      .project-grid{grid-template-columns:1fr}
-      .contact{grid-template-columns:1fr}
-    }
-    .glass-nav {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      padding: 2px 10%;
-      background: rgba(0, 0, 0);
-      backdrop-filter: blur(14px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 10;
-    }
-    nav a {
-      margin-left: 22px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    nav a:hover { color: var(--accent); }
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nilima Umaradiya | Data Analyst</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+          "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+          "react/": "https://esm.sh/react@^19.2.4/",
+          "react": "https://esm.sh/react@^19.2.4",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc; /* slate-50 */
+        color: #0f172a; /* slate-900 */
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { 
+        width: 8px; 
+      }
+      ::-webkit-scrollbar-track { 
+        background: #f1f5f9; 
+      }
+      ::-webkit-scrollbar-thumb { 
+        background: #cbd5e1; 
+        border-radius: 4px; 
+      }
+      ::-webkit-scrollbar-thumb:hover { 
+        background: #94a3b8; 
+      }
+      
+      .gradient-text {
+        background: linear-gradient(to right, #0891b2, #2563eb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      .animate-fade-in-up {
+        animation: fadeInUp 0.3s ease-out forwards;
+      }
+      
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(10px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
     </style>
-</head>
-<body>
-  <header class = "glass-nav">
-    <h3>Portfolio</h3>
-    <nav>
-      <a href="#experience">Projects</a>
-      <a href="#projects">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact Me</a>
+  </head>
+  
+  <body class="bg-slate-50 relative">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div class="flex items-center space-x-2 cursor-pointer group" onclick="scrollToSection('hero')">
+          <span class="text-xl font-bold tracking-tight text-slate-900 group-hover:text-cyan-600 transition-colors">Nilima Umaradiya</span>
+        </div>
+
+        <div class="hidden md:flex space-x-8">
+          <button onclick="scrollToSection('about')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            About
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+          </button>
+          <button onclick="scrollToSection('services')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            Services
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+          </button>
+          <button onclick="scrollToSection('Experience')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            Experience
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+          </button>
+          <button onclick="scrollToSection('projects')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            Projects
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+          </button>
+          <button onclick="scrollToSection('skills')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            Skills
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+          </button>
+          <button onclick="scrollToSection('contact')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            Contact
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+          </button>
+        </div>
+
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900">
+            <i data-lucide="menu" class="w-7 h-7"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl">
+        <div class="flex flex-col px-4 py-4 space-y-4">
+          <button onclick="scrollToSection('about')" class="text-left text-base font-medium text-slate-600 hover:text-cyan-600 py-2 border-b border-slate-100 w-full">About</button>
+          <button onclick="scrollToSection('Experience')" class="text-left text-base font-medium text-slate-600 hover:text-cyan-600 py-2 border-b border-slate-100 w-full">Experience</button>
+          <button onclick="scrollToSection('services')" class="text-left text-base font-medium text-slate-600 hover:text-cyan-600 py-2 border-b border-slate-100 w-full">Services</button>
+          <button onclick="scrollToSection('projects')" class="text-left text-base font-medium text-slate-600 hover:text-cyan-600 py-2 border-b border-slate-100 w-full">Projects</button>
+          <button onclick="scrollToSection('skills')" class="text-left text-base font-medium text-slate-600 hover:text-cyan-600 py-2 border-b border-slate-100 w-full">Skills</button>
+          <button onclick="scrollToSection('contact')" class="text-left text-base font-medium text-slate-600 hover:text-cyan-600 py-2 border-b border-slate-100 w-full">Contact</button>
+        </div>
+      </div>
     </nav>
-    </header>  
-  <div class="container">
 
-    <header class="hero">
-      <div>
-      </div>
-
-      <div>
-        <h3>Hello!</h3>
-        <h1>I'm Nilima Umaradiya</h1>
-        <div><p></p></div>
-        <div class="badge"> SQL • Power BI • Python • ETL </div>
-        <div class="sub">Experienced Data Analyst focused on building reliable analytics, dashboards and SQL-based insights to drive business decisions.</div>
-        <div class="cta">
-          <a class="btn" href="./assets/Resume_Nilima_Umaradiya.pdf" download>Download Resume</a>
-        </div>
-      </div>
-    </header>
-
-    <main class="grid" style="margin-top:24px;">
-      <section class="card" style="grid-column:1 / -1">
-        <div class="section-title"><h3>About Me</h3></div>
-        <p style="color:var(--muted);line-height:1.7">I am a results-driven Data Analyst focused on transforming complex, unstructured data 
-          into actionable business intelligence. My core strengths include SQL-driven analysis, scalable dashboard development, and Python-based
-           Analytics. I prioritize accuracy, reproducibility, and clear communication — ensuring that insights are not just delivered, but 
-           understood and used to drive decisions.</p>
-        <p style="color:var(--muted);line-height:1.7">If your team values rigorous analytics and strategic data thinking, I bring the expertise to elevate your data capabilities and support smarter, faster business outcomes.If you want a strong SQL-first analyst for analytics-heavy teams, Let's connect!</p>
-      </section>
-      <section class="cards">
-
-        <!-- LEFT COLUMN: SKILLS + CONTACT -->
-        <div class="card">
-          <div class="section-title"><h3>Skills</h3></div>
-          <div class="skills">
-            <div class="skill"><div class="meta">SQL (Spark SQL/MySQL)</div><div class="progress" aria-hidden="true"><i style="width:95%"></i></div></div>
-            <div class="skill"><div class="meta">Python</div><div class="progress" aria-hidden="true"><i style="width:88%"></i></div></div>
-            <div class="skill"><div class="meta">Power BI / DAX</div><div class="progress" aria-hidden="true"><i style="width:80%"></i></div></div>
-            <div class="skill"><div class="meta">Data Modelling</div><div class="progress" aria-hidden="true"><i style="width:82%"></i></div></div>
-            <div class="skill"><div class="meta">Troubleshooting and Debugging</div><div class="progress" aria-hidden="true"><i style="width:75%"></i></div></div>
-          </div>
-
-        </div>
-
-        <!-- RIGHT COLUMN: Projects & Experience -->
-        <div class="card">
-          <div class="section-title"><h3>Soft Skills</h3></div>
-          <div class="skills">
-            <div class="skill"><div class="meta">Problem Solving & Analytical thinking</div></div>
-            <div class="skill"><div class="meta">Client Communication</div></div>
-            <div class="skill"><div class="meta">Stakeholder Management</div></div>
-          </div>  
-        </div>
-
-      </section>
-      <div class="card" id="projects">
-            <div class="section-title"><h3>Projects</h3></div>
-            <div class="project-grid">
-
-              <article class="project">
-                <h4>SQL — Sales Analytics</h4>
-                <p>Complex reporting on sales, cohort analysis, and performance tuning. Uses window functions, CTEs and indexed queries for speed.</p>
-                <div class="tags"><span class="tag">SQL</span><span class="tag">Postgres</span><span class="tag">ETL</span><span class="tag">KPI</span></div>
-                <div style="margin-top:10px"><a class="btn outline" href="#" target="_blank">View Repo</a></div>
-              </article>
-
-              <article class="project">
-                <h4>Power BI — Retail Dashboard</h4>
-                <p>Interactive dashboard with dynamic filters, DAX measures for rolling metrics and drill-through pages for product-level insights.</p>
-                <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Dashboard</span></div>
-                <div style="margin-top:10px"><a class="btn outline" href="#" target="_blank">Open Demo</a></div>
-              </article>
-
-              <article class="project">
-                <h4>Python — Customer Churn EDA</h4>
-                <p>Exploratory analysis and feature engineering with pandas; prepared data for model building and identified top churn drivers.</p>
-                <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">EDA</span></div>
-                <div style="margin-top:10px"><a class="btn outline" href="#" target="_blank">View Notebook</a></div>
-              </article>
-
-              <article class="project">
-                <h4>Automation — Data Cleaner</h4>
-                <p>Small Python tool to standardize and validate incoming CSVs before loading into analytics warehouse (templated scripts).</p>
-                <div class="tags"><span class="tag">Automation</span><span class="tag">ETL</span></div>
-                <div style="margin-top:10px"><a class="btn outline" href="#" target="_blank">View Script</a></div>
-              </article>
-
-            </div>
-            </div>
-
-            <div class="card" style="margin-top:16px">
-              <div class="section-title"><h3>Work Experience</h3></div>
-              <div class="timeline">
-                <div class="job">
-                  <div class="left">Mar 2024 — Present</div>
-                  <div class="right">
-                    <h4>Data Analyst — Infilytics Private Limited</h4>
-                    <p>Worked on real-time financial & industrial datasets,Automated excel reports using sql and python. Built dashboards for stakeholders, and optimized SQL queries used in reporting pipelines.</p>
+    <main>
+      <section id="hero" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-slate-50">
+        <div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/4 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 translate-y-12 -translate-x-1/4 w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            <div class="flex flex-col items-start text-left">
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-cyan-700 text-xs font-semibold tracking-wide uppercase mb-6 shadow-sm">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </span>
+                <span>Available for New Opportunities</span>
+              </div>
+              
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
+                Turning Complex Data into <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Agile Business Strategies</span>
+              </h1>
+              
+              <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+                Data Analyst specializing in SQL, Power BI, Python and ETL. I drive operational efficiency and informed decision-making through robust data storytelling.
+              </p>
+              
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto mb-10">
+                <button onclick="scrollToSection('contact')" class="group px-8 py-3.5 bg-slate-900 text-white rounded-xl font-semibold transition-all hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/20 flex items-center justify-center">
+                  Work with Me <i data-lucide="arrow-right" class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                </button>
+                <button onclick="scrollToSection('projects')" class="px-8 py-3.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-semibold transition-all hover:border-slate-300 hover:bg-slate-50 flex items-center justify-center shadow-sm">
+                  View Projects
+                </button>
+              </div>
+              
+              <div class="pt-8 border-t border-slate-200 w-full">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Core Technologies</p>
+                <div class="flex flex-wrap gap-6 opacity-80">
+                  <div class="flex items-center space-x-2 group">
+                    <div class="p-1.5 bg-white rounded border border-slate-200 group-hover:border-cyan-500 transition-colors">
+                      <i data-lucide="database" class="w-4 h-4 text-cyan-600"></i>
+                    </div>
+                    <span class="font-semibold text-slate-700 text-sm">SQL Server</span>
+                  </div>
+                  <div class="flex items-center space-x-2 group">
+                    <div class="p-1.5 bg-white rounded border border-slate-200 group-hover:border-yellow-500 transition-colors">
+                      <i data-lucide="bar-chart-3" class="w-4 h-4 text-yellow-600"></i>
+                    </div>
+                    <span class="font-semibold text-slate-700 text-sm">Power BI</span>
+                  </div>
+                  <div class="flex items-center space-x-2 group">
+                    <div class="p-1.5 bg-white rounded border border-slate-200 group-hover:border-blue-500 transition-colors">
+                      <i data-lucide="file-code" class="w-4 h-4 text-blue-600"></i>
+                    </div>
+                    <span class="font-semibold text-slate-700 text-sm">Python</span>
                   </div>
                 </div>
+              </div>
+            </div>
+            
+            <div class="relative lg:h-[600px] flex items-center justify-center lg:justify-end mt-12 lg:mt-0">
+              <div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 z-20 transform transition-transform hover:translate-y-[-5px] duration-500">
+                <div class="flex justify-between items-center mb-8">
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900">Performance Overview</h3>
+                    <p class="text-xs text-slate-500 mt-1">Live Analytics Dashboard</p>
+                  </div>
+                  <div class="p-2 bg-green-50 rounded-lg border border-green-100">
+                    <i data-lucide="trending-up" class="w-5 h-5 text-green-600"></i>
+                  </div>
+                </div>
+                
+                <div class="flex items-end space-x-4 h-40 mb-8 px-2">
+                  <div class="flex-1 flex flex-col justify-end h-full group">
+                    <div class="w-full rounded-t-lg bg-slate-100 hover:bg-cyan-100 transition-all duration-700" style="height: 40%;"></div>
+                  </div>
+                  <div class="flex-1 flex flex-col justify-end h-full group">
+                    <div class="w-full rounded-t-lg bg-slate-100 hover:bg-cyan-100 transition-all duration-700" style="height: 65%;"></div>
+                  </div>
+                  <div class="flex-1 flex flex-col justify-end h-full group">
+                    <div class="w-full rounded-t-lg bg-slate-100 hover:bg-cyan-100 transition-all duration-700" style="height: 45%;"></div>
+                  </div>
+                  <div class="flex-1 flex flex-col justify-end h-full group">
+                    <div class="w-full rounded-t-lg bg-slate-100 hover:bg-cyan-100 transition-all duration-700" style="height: 80%;"></div>
+                  </div>
+                  <div class="flex-1 flex flex-col justify-end h-full group">
+                    <div class="w-full rounded-t-lg bg-gradient-to-t from-blue-600 to-cyan-500 shadow-lg shadow-cyan-500/20 transition-all duration-700" style="height: 95%;"></div>
+                  </div>
+                </div>
+                
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-cyan-200 transition-colors">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                        <i data-lucide="database" class="w-5 h-5 text-blue-600"></i>
+                      </div>
+                      <div>
+                        <p class="text-sm font-semibold text-slate-900">Query Optimization</p>
+                        <p class="text-xs text-slate-500">SQL Server</p>
+                      </div>
+                    </div>
+                    <span class="text-sm font-bold text-green-600 bg-green-100 px-2 py-1 rounded-md">+80%</span>
+                  </div>
+                  
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-purple-200 transition-colors">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                        <i data-lucide="file-code" class="w-5 h-5 text-purple-600"></i>
+                      </div>
+                      <div>
+                        <p class="text-sm font-semibold text-slate-900">Process Automation</p>
+                        <p class="text-xs text-slate-500">Python Scripts</p>
+                      </div>
+                    </div>
+                    <span class="text-sm font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded-md">+60%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
-        <hr style="margin:18px 0;border-color:rgba(255,255,255,0.03)" />
+      </section>
+
+      <section id="about" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+
+            <div class="relative lg:col-span-2">
+              <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl opacity-10 blur-lg"></div>
+
+              <div class="relative h-[520px] rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 flex items-center justify-center group shadow-2xl shadow-slate-200">
+                <img 
+                  src="./assets/Nilima.png" 
+                  alt="Nilima Umaradiya - Data Analyst" 
+                  class="object-cover object-top w-full h-full opacity-95 group-hover:scale-105 transition-transform duration-700"
+                />
+
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none"></div>
+
+                <div class="absolute bottom-6 left-6 pointer-events-none">
+                  <p class="text-white font-bold text-xl">Data Strategy & Analytics</p>
+                  <p class="text-cyan-200 text-sm">SQL • Power BI • ETL</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-3">
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                Turning Complex Data Into <br />
+                <span class="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+                  Strategic Business Decisions
+                </span>
+              </h2>
+
+              <div class="space-y-6 text-slate-600 text-lg leading-relaxed">
+                <p>
+                  I am Nilima Umaradiya, Currently working as data analyst. I specialize in transforming large-scale financial and operational datasets into structured, decision-ready insights that drive measurable business outcomes.
+                </p>
+
+                <p>
+                  With expertise in SQL optimization, dashboard engineering using Power BI and Tableau, and automation through Python, I design scalable analytics solutions that enhance reporting accuracy and operational efficiency. My work has improved analytics performance by 60% through streamlined processes and data-driven strategy implementation.
+                </p>
+              </div>
+
+              <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-xl hover:border-cyan-500/40 transition-all duration-300 shadow-sm hover:shadow-md">
+                  <h3 class="text-slate-900 font-semibold mb-2">Certified & Technically Strong</h3>
+                  <p class="text-sm text-slate-600">
+                    Google Data Analytics Certified with advanced SQL and BI expertise.
+                  </p>
+                </div>
+
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-500/40 transition-all duration-300 shadow-sm hover:shadow-md">
+                  <h3 class="text-slate-900 font-semibold mb-2">Impact-Focused Execution</h3>
+                  <p class="text-sm text-slate-600">
+                    Delivering automation, reporting efficiency, and strategic clarity for stakeholders.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>&nbsp  </div>
+          </div>
+          
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Academic Background </h2>
+          
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div style="display:flex; gap:20px;">   
+              <span class="bg-gradient-to-r font-bold from-cyan-500 to-blue-600 bg-clip-text text-transparent">B.Tech - Information Technology</span>          
+            </div>
+            
+            <div style="text-align:right;">
+              <div style="font-size:14px; font-weight:bold; color:#94a3b8;">
+                2020 - 2024
+              </div>
+            </div>  
+          </div> 
+          
+          <div>
+            <h4>
+              <span class="text-1xl md:text-1xl font-bold text-slate-900 mb-6">
+                Atmiya University
+              </span>
+            </h4>
+          </div>
+        </div> 
+      </section>
+
+      <section id="Experience" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Work Experience</h2>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <div style="display:flex; gap:20px;">
+                    <div>
+                      <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Weybee Solutions Private Limited</h3>
+                      <div style="font-size:16px; font-weight:bold; color:black;">
+                        Data Analyst
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="text-align:right;">
+                    <div style="font-size:14px; color:#94a3b8;">
+                      DEC 2025 - Present
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <p class="text-slate-600 leading-relaxed text-sm" >
+                <div style="padding: 20px;">
+                  </li>
+                  <li>Derived strategic insights from large-scale datasets spanning 600+ global luxury brand sources, identifying recurring data quality issues influencing AI model performance; leveraged dashboard analytics to validate accuracy, highlight anomalies, and provide data-backed recommendations that enhanced prediction reliability and stakeholder confidence.
+                  </li>
+                  <li>Established reusable SQL stored procedures and modular scripts to streamline recurring analytical tasks, improving scalability and maintainability of reporting workflows.
+                  </li>
+                  <li>Conducted large-scale data quality analysis for 2000+ sources having high-volume transactional databases to detect missing values, duplicates, and integrity violations and
+                  developed stored procedures and automated SQL workflows to streamline repetitive data validation and transformation tasks.
+                  </li>
+                  <li>Built Python-based automation pipelines to generate periodic quality gap reports, minimizing manual intervention and ensuring timely delivery of analytical insights to stakeholders.
+                  </li>
+                </div>
+              </p>
+            </div>
+
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <div style="display:flex; gap:20px;">
+                    <div>
+                      <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Infilytics Private Limited</h3>
+                      <div style="font-size:16px; font-weight:bold; color:black;">
+                        Data Analyst
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="text-align:right;">
+                    <div style="font-size:14px; color:#94a3b8;">
+                      MAR 2024 - NOV 2025
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <p class="text-slate-600 leading-relaxed text-sm" >
+                <div style="padding: 20px;">
+                  </li>
+                  <li>Developed and optimized complex SQL queries and stored procedures for real-time data analysis, improving analytics 
+                  efficiency by 60%. Automated recurring reporting processes using Python and built reusable data templates for 
+                  financial institutions, reducing manual effort by 3–4 hours per report. 
+                  </li>
+                  <li>Created dynamic dashboards and KPI using Power BI, enabling clients to gain real-time operational insights. Built a SQL 
+                  repository of stored procedures to streamline ad-hoc reporting and enable faster access to key metrics. 
+                  </li>
+                  <li>Maintained high standards of data quality, leading regular data cleansing initiatives and proactively identifying 
+                  performance bottlenecks and ensuring seamless data flow and reporting reliability. 
+                  </li>
+                  <li>Gained business knowledge of banking, financial risk management, Internal audits and regulatory compliance, enabling 
+                  data solutions to align with industry-specific requirements with end-to-end client support, including requirement 
+                  gathering, issue resolution and post-deployment assistance and strengthening client relationships. 
+                  </li>
+                </div>
+              </p>
+            </div>
+            
+            <div class="mt-8 md:hidden text-center">
+              <button class="inline-flex items-center text-cyan-600 font-medium hover:text-cyan-500 transition-colors">
+                View Github <i data-lucide="external-link" class="ml-2 w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="py-24 bg-slate-50 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What I Do</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">End-to-end data solutions tailored to scale with your business needs.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="bar-chart" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Advanced Data Analytics</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Analyzing large-scale databases to uncover trends. Expertise in statistical analysis and financial risk management reporting.</p>
+            </div>
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="workflow" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Dashboard Development</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Creating dynamic, interactive dashboards using Power BI and Tableau to visualize KPIs and support real-time operational insights.</p>
+            </div>
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="database" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">SQL & Database Management</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Developing optimized SQL queries, stored procedures, and managing data across MySQL, Oracle, and SQL Server environments.</p>
+            </div>
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="code" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Python Automation</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Automating recurring reporting processes and performing textual/sentiment analysis using Python (Pandas, NumPy, NLTK).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Featured Projects</h2>
+              <p class="text-slate-600 max-w-xl">A selection of recent work delivering measurable business impact through advanced data engineering.</p>
+            </div>
+            <button class="hidden md:flex items-center text-cyan-600 font-medium hover:text-cyan-500 transition-colors mt-4 md:mt-0">
+              View Github <i data-lucide="external-link" class="ml-2 w-4 h-4"></i>
+            </button>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-slate-200 transition-shadow duration-300">
+              <div class="h-48 bg-slate-100 relative group overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                  <i data-lucide="layers" class="text-slate-400 w-16 h-16 group-hover:scale-110 group-hover:text-cyan-500 transition-all duration-500"></i>
+                </div>
+                <div class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span class="text-slate-900 font-medium px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">View Case Study</span>
+                </div>
+              </div>
+              <div class="p-6 flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Inventory Database System</h3>
+                <p class="text-slate-600 text-sm mb-6 flex-1">Developed an inventory database using SQL Server to track products and suppliers. Automated stock updates and reorder alerts.</p>
+                <button class="inline-flex items-center text-cyan-600 font-medium hover:text-cyan-500 transition-colors mb-4">View Github <i data-lucide="external-link" class="ml-2 w-4 h-4"></i></button>
+                <div class="mb-6">
+                  <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Key Outcome</h4>
+                  <p class="text-cyan-600 text-sm font-medium">Reduced stock discrepancies by 25% and excess inventory by 15%, optimizing management processes.</p>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">SQL Server</span>
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Automation</span>
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Database Design</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-slate-200 transition-shadow duration-300">
+              <div class="h-48 bg-slate-100 relative group overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                  <i data-lucide="layers" class="text-slate-400 w-16 h-16 group-hover:scale-110 group-hover:text-cyan-500 transition-all duration-500"></i>
+                </div>
+                <div class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span class="text-slate-900 font-medium px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">View Case Study</span>
+                </div>
+              </div>
+              <div class="p-6 flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Stock Trend Analysis App</h3>
+                <p class="text-slate-600 text-sm mb-6 flex-1">Built a stock trend analytics system using Python and Streamlit. Utilized machine learning models for real-time price prediction and visualization.</p>
+                <button class="inline-flex items-center text-cyan-600 font-medium hover:text-cyan-500 transition-colors mb-4">View Github <i data-lucide="external-link" class="ml-2 w-4 h-4"></i></button>
+                <div class="mb-6">
+                  <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Key Outcome</h4>
+                  <p class="text-cyan-600 text-sm font-medium">Improved forecasting accuracy to support better investment decisions and financial planning.</p>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Python</span>
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Streamlit</span>
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Machine Learning</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-slate-200 transition-shadow duration-300">
+              <div class="h-48 bg-slate-100 relative group overflow-hidden">
+                <img 
+                  src="./assets/Nilima.png" 
+                  alt="Project Preview"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span class="text-slate-900 font-medium px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">
+                    View Case Study
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6 flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Interactive BI Dashboards</h3>
+                <p class="text-slate-600 text-sm mb-6 flex-1">Created comprehensive dashboards for Amazon Sales and Zomato data to analyze industry trends, sales performance, and customer sentiment.</p>
+                <button class="inline-flex items-center text-cyan-600 font-medium hover:text-cyan-500 transition-colors mb-4">View Github <i data-lucide="external-link" class="ml-2 w-4 h-4"></i></button>
+                <div class="mb-6">
+                  <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Key Outcome</h4>
+                  <p class="text-cyan-600 text-sm font-medium">Provided actionable insights into sales trends and customer preferences, supporting strategic business decisions.</p>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Power BI</span>
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Python</span>
+                  <span class="px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-600 font-medium">Data Visualization</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-8 md:hidden text-center">
+            <button class="inline-flex items-center text-cyan-600 font-medium hover:text-cyan-500 transition-colors">
+              View Github <i data-lucide="external-link" class="ml-2 w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2">
+              <h2 class="text-3xl font-bold text-slate-900 mb-8">Technical Proficiency</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">Languages & Frameworks</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> SQL</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Python</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> R</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Pandas</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> NumPy</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Selenium</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">BI & Visualization</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Power BI</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Tableau</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Microsoft Excel</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">Databases & Tools</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> MySQL</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Oracle</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> SQL Server</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> PostgreSQL</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Azure Data Factory</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Git</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lg:col-span-1">
+              <div class="bg-white border border-slate-200 rounded-2xl p-8 sticky top-24 shadow-sm">
+                <div class="flex items-center space-x-3 mb-6">
+                  <i data-lucide="shield-check" class="w-8 h-8 text-cyan-600"></i>
+                  <h2 class="text-2xl font-bold text-slate-900">Certifications</h2>
+                </div>
+                <div class="space-y-6">
+                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
+                    <h3 class="text-slate-900 font-medium">Google Data Analytics Professional Certificate</h3>
+                    <p class="text-sm text-slate-500 mt-1">Google</p>
+                  </div>
+                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
+                    <h3 class="text-slate-900 font-medium">SQL Advanced Certificate</h3>
+                    <p class="text-sm text-slate-500 mt-1">HackerRank</p>
+                  </div>
+                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
+                    <h3 class="text-slate-900 font-medium">AWS Academy Machine Learning Foundations</h3>
+                    <p class="text-sm text-slate-500 mt-1">AWS</p>
+                  </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-100">
+                  <p class="text-sm text-slate-500 italic">"Continuous learning is the cornerstone of my professional philosophy."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-100/50 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Ready to Transform Your Data?</h2>
+          <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
+            Whether you need deep analysis, reporting automation, or actionable financial insights, I'm here to help you achieve your goals.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <a href="mailto:nilimaumradiya@gmail.com" class="px-8 py-4 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-700 transition-all hover:scale-105 shadow-lg shadow-cyan-600/20 w-full sm:w-auto">
+              Send Me an Email
+            </a>
+            <a href="https://www.linkedin.com/in/nilima-umaradiya-a8a787239/" target="_blank" rel="noreferrer" class="px-8 py-4 bg-white border border-slate-200 text-slate-900 font-semibold rounded-lg hover:bg-slate-50 hover:border-slate-300 transition-all w-full sm:w-auto shadow-sm">
+              Connect on LinkedIn
+            </a>
+          </div>
+          <div class="mt-16 pt-16 border-t border-slate-200 flex justify-center space-x-8">
+            <a href="https://linkedin.com/in/nilima-umaradiya" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-cyan-600 transition-colors">
+              <span class="sr-only">LinkedIn</span>
+              <i data-lucide="linkedin" class="w-6 h-6"></i>
+            </a>
+            <a href="mailto:nilimaumradiya@gmail.com" class="text-slate-400 hover:text-cyan-600 transition-colors">
+              <span class="sr-only">Email</span>
+              <i data-lucide="mail" class="w-6 h-6"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div id="chat-widget-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end font-sans">
+        <div id="chat-window" class="hidden mb-4 w-80 md:w-96 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-fade-in-up h-[500px]">
+          <div class="bg-slate-50 p-4 flex justify-between items-center border-b border-slate-200">
+            <div class="flex items-center space-x-2">
+              <div class="w-8 h-8 rounded-full bg-cyan-100 flex items-center justify-center">
+                <i data-lucide="bot" class="w-4 h-4 text-cyan-600"></i>
+              </div>
+              <div>
+                <h3 class="text-slate-900 font-medium text-sm">Nilima's Assistant</h3>
+                <p class="text-xs text-slate-500 flex items-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span> Online
+                </p>
+              </div>
+            </div>
+            <button onclick="toggleChat()" class="text-slate-400 hover:text-slate-600 transition-colors">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+          <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+            </div>
+          <div class="p-4 bg-white border-t border-slate-200">
+            <div class="relative">
+              <input type="text" id="chat-input" placeholder="Ask about Nilima..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl py-3 pl-4 pr-12 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-400" />
+              <button id="chat-send-btn" class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-cyan-600 rounded-lg text-white hover:bg-cyan-700 transition-colors">
+                <i data-lucide="send" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button onclick="toggleChat()" class="group flex items-center justify-center w-14 h-14 rounded-full shadow-lg shadow-cyan-600/20 transition-all duration-300 hover:scale-110 bg-gradient-to-r from-cyan-500 to-blue-600">
+          <i id="chat-toggle-icon" data-lucide="message-circle" class="text-white w-7 h-7"></i>
+        </button>
+      </div>
     </main>
 
-    <footer>
-      <div style="opacity:0.9">Made with ❤️ •<a href="mailto:nilimaumradiya@gmail.com">nilimaumradiya@gmail.com</a>•
-        <a href="https://github.com/nilimaumradiya">GitHub</a> • <a href="https://www.linkedin.com/in/nilima-umaradiya-a8a787239/">LinkedIn</a></div>
+    <footer class="py-8 bg-slate-50 border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-slate-500 text-sm">&copy; <span id="year"></span> Nilima Umaradiya. All rights reserved.</p>
+      </div>
     </footer>
 
-  </div>
+    <script type="module">
+      import { GoogleGenAI } from "@google/genai";
 
-</body>
+      // Initialize Icons
+      lucide.createIcons();
+
+      // Footer Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Navbar Logic
+      const navbar = document.getElementById('navbar');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'shadow-sm', 'py-4');
+          navbar.classList.remove('bg-transparent', 'py-6');
+        } else {
+          navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'border-b', 'border-slate-200', 'shadow-sm', 'py-4');
+          navbar.classList.add('bg-transparent', 'py-6');
+        }
+      });
+
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if(!mobileMenu.classList.contains('hidden')){
+          mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
+        } else {
+          mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+        }
+        lucide.createIcons();
+      });
+
+      window.scrollToSection = (id) => {
+        const el = document.getElementById(id);
+        if(el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          mobileMenu.classList.add('hidden');
+          mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+          lucide.createIcons();
+        }
+      };
+
+      // Chat Widget Logic
+      const chatWindow = document.getElementById('chat-window');
+      const chatMessages = document.getElementById('chat-messages');
+      const chatInput = document.getElementById('chat-input');
+      const chatSendBtn = document.getElementById('chat-send-btn');
+      const chatToggleIcon = document.getElementById('chat-toggle-icon');
+      
+      let isOpen = false;
+      let messages = [
+        { role: 'model', text: "Hi! I'm Nilima's AI assistant. Ask me anything about her experience in Data Analytics, SQL, or Power BI." }
+      ];
+
+      window.toggleChat = () => {
+        isOpen = !isOpen;
+        if (isOpen) {
+          chatWindow.classList.remove('hidden');
+          chatToggleIcon.setAttribute('data-lucide', 'x');
+          chatToggleIcon.classList.add('text-slate-600');
+          chatToggleIcon.parentElement.classList.add('bg-slate-200');
+          chatToggleIcon.parentElement.classList.remove('bg-gradient-to-r', 'from-cyan-500', 'to-blue-600');
+          initChat();
+        } else {
+          chatWindow.classList.add('hidden');
+          chatToggleIcon.setAttribute('data-lucide', 'message-circle');
+          chatToggleIcon.classList.remove('text-slate-600');
+          chatToggleIcon.classList.add('text-white');
+          chatToggleIcon.parentElement.classList.remove('bg-slate-200');
+          chatToggleIcon.parentElement.classList.add('bg-gradient-to-r', 'from-cyan-500', 'to-blue-600');
+        }
+        lucide.createIcons();
+      };
+
+      function renderMessages() {
+        chatMessages.innerHTML = '';
+        messages.forEach(msg => {
+          const div = document.createElement('div');
+          div.className = `flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`;
+          div.innerHTML = `
+            <div class="max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${msg.role === 'user' ? 'bg-cyan-600 text-white rounded-br-none' : 'bg-white text-slate-700 rounded-bl-none border border-slate-200'}">
+              ${msg.text}
+            </div>
+          `;
+          chatMessages.appendChild(div);
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      renderMessages();
+
+      // Gemini Setup
+      let chatSession = null;
+      
+      const systemInstruction = `
+        You are an AI assistant for Nilima Umaradiya, a professional Data Analyst. 
+        You are embedded on Nilima's personal portfolio website.
+        Your goal is to answer visitor questions about Nilima's skills, experience, and services based strictly on the following context.
+        Be professional, concise, and persuasive. If a user asks to hire Nilima, guide them to the contact section or mention her email: nilimaumradiya@gmail.com.
+
+        Context:
+        Name: Nilima Umaradiya
+        Role: I drive operational efficiency and informed decision-making through robust data storytelling.
+        Bio: I am Nilima Umaradiya, a passionate and detail-oriented Data Analyst based in Ahmedabad, Gujarat. Currently working as Data Analyst, I specialize in analyzing large-scale databases and creating financial reports using SQL, Power BI, and Tableau. With a B.Tech in Information Technology and a strong foundation in statistics, I bridge the gap between raw data and strategic business value, having successfully improved analytics efficiency by 60% in previous roles.
+        Mission: My mission is to deliver impactful insights that enhance operational efficiencies. I strive to build scalable data solutions—from optimizing SQL queries to automating reporting processes—ensuring stakeholders have reliable, real-time data for agile decision-making.
+
+        Services:
+        - Advanced Data Analytics: Analyzing large-scale databases to uncover trends. Expertise in statistical analysis and financial risk management reporting.
+        - Dashboard Development: Creating dynamic, interactive dashboards using Power BI and Tableau to visualize KPIs and support real-time operational insights.
+        - SQL & Database Management: Developing optimized SQL queries, stored procedures, and managing data across MySQL, Oracle, and SQL Server environments.
+        - Python Automation: Automating recurring reporting processes and performing textual/sentiment analysis using Python (Pandas, NumPy, NLTK).
+
+        Key Projects:
+        - Inventory Database System (SQL Server, Automation, Database Design): Reduced stock discrepancies by 25% and excess inventory by 15%, optimizing management processes.
+        - Stock Trend Analysis App (Python, Streamlit, Machine Learning, Scikit-learn): Improved forecasting accuracy to support better investment decisions and financial planning.
+        - Interactive BI Dashboards (Power BI, Python, Data Visualization): Provided actionable insights into sales trends and customer preferences, supporting strategic business decisions.
+
+        Skills:
+        - Languages & Frameworks: SQL, Python, R, Pandas, NumPy, Selenium
+        - BI & Visualization: Power BI, Tableau, Microsoft Excel
+        - Databases & Tools: MySQL, Oracle, SQL Server, PostgreSQL, Azure Data Factory, Git, Jira, VS Code
+
+        Certifications:
+        - Google Data Analytics Professional Certificate (Google)
+        - SQL Advanced Certificate (HackerRank)
+        - AWS Academy Machine Learning Foundations (AWS)
+
+        Do not invent information not provided here. If you don't know, suggest they contact Nilima directly.
+      `;
+
+      function initChat() {
+        if (chatSession) return;
+        const API_KEY = process.env.API_KEY; 
+        if (!API_KEY) {
+          console.warn("API Key missing");
+          return;
+        }
+        const ai = new GoogleGenAI({ apiKey: API_KEY });
+        chatSession = ai.chats.create({
+          model: 'gemini-3-flash-preview',
+          config: { systemInstruction }
+        });
+      }
+
+      async function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        
+        messages.push({ role: 'user', text });
+        renderMessages();
+        chatInput.value = '';
+        
+        // Add loading
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'flex justify-start';
+        loadingDiv.innerHTML = `<div class="bg-white rounded-2xl rounded-bl-none px-4 py-3 border border-slate-200 shadow-sm"><i data-lucide="loader-2" class="w-4 h-4 text-cyan-600 animate-spin"></i></div>`;
+        chatMessages.appendChild(loadingDiv);
+        lucide.createIcons();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+          if (!chatSession) initChat();
+          if (!chatSession) throw new Error("Chat not initialized (missing API key?)");
+          
+          const result = await chatSession.sendMessage({ message: text });
+          const responseText = result.text;
+          
+          messages.push({ role: 'model', text: responseText });
+        } catch (e) {
+          console.error(e);
+          messages.push({ role: 'model', text: "I'm having trouble connecting right now. Please try again later." });
+        } finally {
+          chatMessages.removeChild(loadingDiv);
+          renderMessages();
+        }
+      }
+
+      chatSendBtn.addEventListener('click', sendMessage);
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
+
+    </script>
+  </body>
 </html>
