@@ -77,16 +77,16 @@
             Experience
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
           </button>
-          <button onclick="scrollToSection('services')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
-            Services
+          <button onclick="scrollToSection('skills')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            Skills
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
           </button>
           <button onclick="scrollToSection('projects')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
             Projects
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
           </button>
-          <button onclick="scrollToSection('skills')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
-            Skills
+          <button onclick="scrollToSection('services')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
+            Services
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all duration-300 group-hover:w-full"></span>
           </button>
           <button onclick="scrollToSection('contact')" class="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors relative group">
@@ -115,7 +115,7 @@
     </nav>
 
     <main>
-      <section id="hero" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-slate-50">
+      <section id="hero" class="relative pt-16 pb-20 lg:pt-24 lg:pb-32 overflow-hidden bg-slate-50">
         <div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/4 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-[120px] pointer-events-none"></div>
         <div class="absolute bottom-0 left-0 translate-y-12 -translate-x-1/4 w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-[120px] pointer-events-none"></div>
@@ -215,7 +215,7 @@
                         <p class="text-xs text-slate-500">SQL Server</p>
                       </div>
                     </div>
-                    <span class="text-sm font-bold text-green-600 bg-green-100 px-2 py-1 rounded-md">+80%</span>
+                    <span class="text-sm font-bold text-green-600 bg-green-100 px-2 py-1 rounded-md">+92%</span>
                   </div>
                   
                   <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-purple-200 transition-colors">
@@ -228,7 +228,7 @@
                         <p class="text-xs text-slate-500">Python Scripts</p>
                       </div>
                     </div>
-                    <span class="text-sm font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded-md">+60%</span>
+                    <span class="text-sm font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded-md">+68%</span>
                   </div>
                 </div>
               </div>
@@ -238,7 +238,7 @@
         </div>
       </section>
 
-      <section id="about" class="py-24 bg-white relative">
+      <section id="about" class="pt-8 pb-4 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
 
@@ -295,10 +295,10 @@
                 </div>
               </div>
             </div>
-            <div>&nbsp  </div>
+            
           </div>
           
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Academic Background </h2>
+          <!-- <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Academic Background </h2>
           
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div style="display:flex; gap:20px;">   
@@ -318,11 +318,11 @@
                 Atmiya University
               </span>
             </h4>
-          </div>
-        </div> 
+          </div>-->
+        </div>  
       </section>
 
-      <section id="Experience" class="py-24 bg-white">
+      <section id="Experience" class="pt-20 pb-10 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
@@ -416,52 +416,80 @@
         </div>
       </section>
 
-      <section id="services" class="py-24 bg-slate-50 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+      <section id="skills" class="pt-20 pb-10 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What I Do</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">End-to-end data solutions tailored to scale with your business needs.</p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
-              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
-                <i data-lucide="bar-chart" class="w-8 h-8"></i>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2">
+              <h2 class="text-3xl font-bold text-slate-900 mb-8">Technical Proficiency</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">Languages & Frameworks</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> SQL</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Python</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> R</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Pandas</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> NumPy</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Selenium</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">BI & Visualization</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Power BI</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Tableau</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Microsoft Excel</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">Databases & Tools</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> MySQL</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Oracle</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> SQL Server</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> PostgreSQL</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Azure Data Factory</li>
+                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Git</li>
+                  </ul>
+                </div>
               </div>
-              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Advanced Data Analytics</h3>
-              <p class="text-slate-600 leading-relaxed text-sm">Analyzing large-scale databases to uncover trends. Expertise in statistical analysis and financial risk management reporting.</p>
             </div>
-            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
-              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
-                <i data-lucide="workflow" class="w-8 h-8"></i>
+            
+            <div class="lg:col-span-1">
+              <div class="bg-white border border-slate-200 rounded-2xl p-8 sticky top-24 shadow-sm">
+                <div class="flex items-center space-x-3 mb-6">
+                  <i data-lucide="shield-check" class="w-8 h-8 text-cyan-600"></i>
+                  <h2 class="text-2xl font-bold text-slate-900">Certifications</h2>
+                </div>
+                <div class="space-y-6">
+                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
+                    <h3 class="text-slate-900 font-medium">Google Data Analytics Professional Certificate</h3>
+                    <p class="text-sm text-slate-500 mt-1">Google</p>
+                  </div>
+                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
+                    <h3 class="text-slate-900 font-medium">SQL Advanced Certificate</h3>
+                    <p class="text-sm text-slate-500 mt-1">HackerRank</p>
+                  </div>
+                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
+                    <h3 class="text-slate-900 font-medium">AWS Academy Machine Learning Foundations</h3>
+                    <p class="text-sm text-slate-500 mt-1">AWS</p>
+                  </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-100">
+                  <p class="text-sm text-slate-500 italic">"Continuous learning is the cornerstone of my professional philosophy."</p>
+                </div>
               </div>
-              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Dashboard Development</h3>
-              <p class="text-slate-600 leading-relaxed text-sm">Creating dynamic, interactive dashboards using Power BI and Tableau to visualize KPIs and support real-time operational insights.</p>
-            </div>
-            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
-              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
-                <i data-lucide="database" class="w-8 h-8"></i>
-              </div>
-              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">SQL & Database Management</h3>
-              <p class="text-slate-600 leading-relaxed text-sm">Developing optimized SQL queries, stored procedures, and managing data across MySQL, Oracle, and SQL Server environments.</p>
-            </div>
-            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
-              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
-                <i data-lucide="code" class="w-8 h-8"></i>
-              </div>
-              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Python Automation</h3>
-              <p class="text-slate-600 leading-relaxed text-sm">Automating recurring reporting processes and performing textual/sentiment analysis using Python (Pandas, NumPy, NLTK).</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="projects" class="py-24 bg-white">
+      <section id="projects" class="pt-20 pb-10 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
               <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Featured Projects</h2>
-              <p class="text-slate-600 max-w-xl">A selection of recent work delivering measurable business impact through advanced data engineering.</p>
+              <p class="text-slate-600 max-w-xxl">A selection of recent work delivering measurable business impact through advanced data engineering.</p>
             </div>
             <button class="hidden md:flex items-center text-cyan-600 font-medium hover:text-cyan-500 transition-colors mt-4 md:mt-0">
               View Github <i data-lucide="external-link" class="ml-2 w-4 h-4"></i>
@@ -553,74 +581,47 @@
         </div>
       </section>
 
-      <section id="skills" class="py-24 bg-slate-50">
+      <section id="services" class="pt-20 pb-10 bg-slate-50 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div class="lg:col-span-2">
-              <h2 class="text-3xl font-bold text-slate-900 mb-8">Technical Proficiency</h2>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">Languages & Frameworks</h3>
-                  <ul class="space-y-3">
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> SQL</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Python</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> R</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Pandas</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> NumPy</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Selenium</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">BI & Visualization</h3>
-                  <ul class="space-y-3">
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Power BI</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Tableau</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Microsoft Excel</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-cyan-600 mb-4">Databases & Tools</h3>
-                  <ul class="space-y-3">
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> MySQL</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Oracle</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> SQL Server</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> PostgreSQL</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Azure Data Factory</li>
-                    <li class="flex items-center text-slate-700"><i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 mr-3 shrink-0"></i> Git</li>
-                  </ul>
-                </div>
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">What I Do</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">End-to-end data solutions tailored to scale with your business needs.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="bar-chart" class="w-8 h-8"></i>
               </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Advanced Data Analytics</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Analyzing large-scale databases to uncover trends. Expertise in statistical analysis and financial risk management reporting.</p>
             </div>
-            
-            <div class="lg:col-span-1">
-              <div class="bg-white border border-slate-200 rounded-2xl p-8 sticky top-24 shadow-sm">
-                <div class="flex items-center space-x-3 mb-6">
-                  <i data-lucide="shield-check" class="w-8 h-8 text-cyan-600"></i>
-                  <h2 class="text-2xl font-bold text-slate-900">Certifications</h2>
-                </div>
-                <div class="space-y-6">
-                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
-                    <h3 class="text-slate-900 font-medium">Google Data Analytics Professional Certificate</h3>
-                    <p class="text-sm text-slate-500 mt-1">Google</p>
-                  </div>
-                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
-                    <h3 class="text-slate-900 font-medium">SQL Advanced Certificate</h3>
-                    <p class="text-sm text-slate-500 mt-1">HackerRank</p>
-                  </div>
-                  <div class="border-l-2 border-slate-200 pl-4 py-1 hover:border-cyan-500 transition-colors">
-                    <h3 class="text-slate-900 font-medium">AWS Academy Machine Learning Foundations</h3>
-                    <p class="text-sm text-slate-500 mt-1">AWS</p>
-                  </div>
-                </div>
-                <div class="mt-8 pt-6 border-t border-slate-100">
-                  <p class="text-sm text-slate-500 italic">"Continuous learning is the cornerstone of my professional philosophy."</p>
-                </div>
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="workflow" class="w-8 h-8"></i>
               </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Dashboard Development</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Creating dynamic, interactive dashboards using Power BI and Tableau to visualize KPIs and support real-time operational insights.</p>
+            </div>
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="database" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">SQL & Database Management</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Developing optimized SQL queries, stored procedures, and managing data across MySQL, Oracle, and SQL Server environments.</p>
+            </div>
+            <div class="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-cyan-500/30 hover:shadow-xl hover:shadow-cyan-900/5 transition-all duration-300 hover:-translate-y-1">
+              <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cyan-600 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                <i data-lucide="code" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">Python Automation</h3>
+              <p class="text-slate-600 leading-relaxed text-sm">Automating recurring reporting processes and performing textual/sentiment analysis using Python (Pandas, NumPy, NLTK).</p>
             </div>
           </div>
         </div>
       </section>
 
+      
       <section id="contact" class="py-24 bg-white relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-100/50 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
