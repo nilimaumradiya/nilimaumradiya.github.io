@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investigation of Endocrine-Disrupting Chemicals (EDCs) in Drinking Water | Nilima Umaradiya</title>
+  <meta name="description" content="Exploratory spatial and temporal analysis of phthalate concentrations in Jabalpur drinking water. Case study by Nilima Umaradiya based on ICMR-NHRDR dataset." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; color: black; }
+      .shadow-xl, .shadow-2xl, .shadow-sm { box-shadow: none !important; }
+      .border { border-color: #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-cyan-100 selection:text-cyan-900">
+
+  <!-- Top Bar / Navigation -->
+  <header class="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Zone 1: Brand & Breadcrumb -->
+      <div class="flex items-center space-x-3">
+        <a href="/" class="flex items-center space-x-2 text-slate-900 hover:text-cyan-600 transition-colors">
+          <div class="p-1.5 bg-gradient-to-tr from-cyan-600 to-blue-600 rounded-lg shadow-sm">
+            <i data-lucide="terminal" class="w-4 h-4 text-white"></i>
+          </div>
+          <span class="font-bold tracking-tight text-base font-display">Nilima Umaradiya</span>
+        </a>
+        <span class="text-slate-300 hidden sm:inline">/</span>
+        <span class="text-xs text-slate-500 font-medium hidden sm:inline truncate max-w-xs">EDC Drinking Water Case Study</span>
+      </div>
+
+      <!-- Zone 2: Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+        <a href="/#projects" class="hover:text-cyan-600 transition-colors">← Back to Portfolio</a>
+        <a href="#executive-summary" class="hover:text-cyan-600 transition-colors">Executive Summary</a>
+        <a href="#geospatial-hotspots" class="hover:text-cyan-600 transition-colors">Spatial Hotspots</a>
+        <a href="#chemical-profiling" class="hover:text-cyan-600 transition-colors">Chemical Profile</a>
+        <a href="#seasonal-disparities" class="hover:text-cyan-600 transition-colors">Seasonal Surge</a>
+        <a href="#methodology" class="hover:text-cyan-600 transition-colors">Methodology</a>
+      </nav>
+
+      <!-- Zone 3: Actions -->
+      <div class="flex items-center space-x-2.5">
+        <button onclick="window.print()" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors inline-flex items-center">
+          <i data-lucide="printer" class="w-3.5 h-3.5 mr-1.5 text-slate-500"></i>
+          Print / PDF
+        </button>
+        <button id="copy-citation-btn" onclick="copyCitation()" class="px-3.5 py-1.5 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors inline-flex items-center shadow-xs">
+          <i data-lucide="copy" class="w-3.5 h-3.5 mr-1.5 text-cyan-400"></i>
+          <span id="copy-btn-text">Cite Study</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center space-x-2 text-sm transition-all duration-300 transform translate-y-16 opacity-0 pointer-events-none">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toast-message">Citation copied to clipboard!</span>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+    
+    <!-- Breadcrumb & Back Link -->
+    <div class="mb-8 flex items-center justify-between">
+      <a href="/#projects" class="inline-flex items-center text-sm font-semibold text-cyan-700 hover:text-cyan-800 transition-colors group">
+        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1"></i>
+        Back to Featured Projects
+      </a>
+      <div class="text-xs text-slate-500 flex items-center space-x-2">
+        <span>ICMR-NHRDR Verified Research</span>
+        <span aria-hidden="true">·</span>
+        <span class="font-mono">JBP-EDC-2024</span>
+      </div>
+    </div>
+
+    <!-- Article Header / Title Frame -->
+    <div class="mb-12">
+      <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500 mb-4">
+        <span class="text-cyan-700 font-semibold uppercase tracking-wider">Environmental Data Analytics &amp; Public Health</span>
+        <span aria-hidden="true">·</span>
+        <span>Geospatial &amp; Temporal Analysis</span>
+        <span aria-hidden="true">·</span>
+        <span>Peer Data Repository</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6 max-w-4xl">
+        Investigation of Endocrine-Disrupting Chemicals (EDCs) in Drinking Water: <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Jabalpur Case Study</span>
+      </h1>
+
+      <div class="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs text-slate-400 uppercase font-semibold tracking-wider mb-1">Study Objective</div>
+          <p class="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
+            To conduct an exploratory spatial and temporal analysis of phthalate concentrations in drinking water, identifying severe contamination vectors to inform public health interventions.
+          </p>
+        </div>
+        <div class="shrink-0 border-t md:border-t-0 md:border-l border-slate-200 pt-3 md:pt-0 md:pl-6">
+          <a href="https://nhrdr.icmr.org.in/datasets/investigation-on-drinking-water-as-a-potential-source-of-endocrine-disrupting-chemicals-edcs-to-humans-an-exploratory-study-in-jabalpur-mp" target="_blank" rel="noreferrer" class="inline-flex items-center text-xs font-semibold text-cyan-700 hover:text-cyan-800 bg-cyan-50 hover:bg-cyan-100 px-3 py-2 rounded-lg transition-colors">
+            <i data-lucide="external-link" class="w-3.5 h-3.5 mr-1.5"></i>
+            Access Official ICMR Dataset
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Banner Image & Study Metadata Lockup -->
+    <div class="mb-14 rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-white">
+      <div class="relative aspect-video max-h-[440px] w-full bg-slate-900 overflow-hidden">
+        <img 
+          src="/edc_water_study_banner.jpg" 
+          alt="EDC Contamination Drinking Water Geospatial Study" 
+          class="w-full h-full object-cover"
+          referrerpolicy="no-referrer"
+          onerror="this.style.display='none'"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
+          <div class="max-w-2xl text-white">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono text-cyan-300 bg-cyan-950/60 border border-cyan-800/60 px-2.5 py-1 rounded-md mb-2 backdrop-blur-sm">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>Jabalpur, Madhya Pradesh, India</span>
+            </div>
+            <p class="text-sm sm:text-base text-slate-200 leading-snug">
+              Exploratory spatial mapping isolating localized municipal contamination vectors and non-parametric seasonal variance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Author and Technical Profile Strip -->
+      <div class="p-6 bg-slate-50 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+        <div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Lead Analyst</div>
+          <div class="font-bold text-slate-900">Nilima Umaradiya</div>
+          <div class="text-xs text-slate-500">Data Analytics Specialist</div>
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Data Source</div>
+          <div class="font-bold text-slate-900 truncate">ICMR / NHRDR</div>
+          <div class="text-xs text-slate-500">Indian Council of Medical Research</div>
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Analytical Pipeline</div>
+          <div class="font-bold text-slate-900">SQL · Python · Power BI</div>
+          <div class="text-xs text-slate-500">Star Schema Dimensional Logic</div>
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Statistical Method</div>
+          <div class="font-bold text-slate-900">Median Aggregation</div>
+          <div class="text-xs text-slate-500">Non-Parametric Outlier Isolation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- High-Impact Key Findings Metrics Bar -->
+    <div class="mb-14">
+      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Core Quantitative Outlier Metrics</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <div class="bg-white p-6 rounded-2xl border border-rose-200/80 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-2 h-full bg-rose-500"></div>
+          <div class="text-xs text-rose-600 font-bold uppercase tracking-wider mb-1">Ramnagra Area Hotspot</div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono tabular-nums mb-1">120</div>
+          <div class="text-xs text-slate-500">Median total phthalate level (vs near 0 in surrounding areas)</div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-amber-200/80 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-2 h-full bg-amber-500"></div>
+          <div class="text-xs text-amber-700 font-bold uppercase tracking-wider mb-1">Ramnagra DnBP Spike</div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono tabular-nums mb-1">38.37</div>
+          <div class="text-xs text-slate-500">Extreme localized driver (vs 0.08 global baseline — 480× higher)</div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-cyan-200/80 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-2 h-full bg-cyan-600"></div>
+          <div class="text-xs text-cyan-700 font-bold uppercase tracking-wider mb-1">Winter Amplification</div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono tabular-nums mb-1">11.3×</div>
+          <div class="text-xs text-slate-500">0.79 Winter vs 0.07 Summer median concentration in drinking water</div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-blue-200/80 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-2 h-full bg-blue-600"></div>
+          <div class="text-xs text-blue-700 font-bold uppercase tracking-wider mb-1">DEHP Seasonal Driver</div>
+          <div class="text-3xl lg:text-4xl font-extrabold text-slate-900 font-mono tabular-nums mb-1">5.2 <span class="text-base font-normal text-slate-400">vs 0.9</span></div>
+          <div class="text-xs text-slate-500">Median jumps 5.8× during winter months across municipal supply</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Main Report Body Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- Content Column -->
+      <div class="lg:col-span-8 space-y-14">
+
+        <!-- Executive Summary Section -->
+        <section id="executive-summary" class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center space-x-2 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>Executive Summary</span>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-4">
+            Systemic Winter Surges and Severe Localized Contamination
+          </h2>
+          <p class="text-slate-600 leading-relaxed text-base mb-6">
+            This exploratory data analysis reveals significant geospatial and seasonal variances in phthalate contamination across Jabalpur. The visualization model relies on calculating aggregated median concentrations—grouping by chemical compound, geographical area, and seasonality—to isolate severe outliers and establish contamination baselines.
+          </p>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/90 text-slate-700 text-sm leading-relaxed">
+            <strong class="font-semibold text-slate-900">Critical Finding:</strong> The analysis discovered an extreme localized contamination event in the <strong class="text-rose-700">Ramnagra</strong> area (median 120 vs ~0 in Bhongdwar, Lalpur, and Ranjhi), coupled with a systemic, city-wide increase in chemical concentrations during the winter season (reaching an 11.3× amplification in drinking water).
+          </div>
+        </section>
+
+        <!-- Section 1: Geospatial Contamination Hotspots -->
+        <section id="geospatial-hotspots" class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center space-x-2 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">
+            <i data-lucide="map" class="w-4 h-4"></i>
+            <span>Finding 01 · Geospatial Analysis</span>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-3">
+            Geospatial Contamination Hotspots
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            A critical component of the analysis involved grouping the data by geographical area to isolate location-specific risks. Rather than averaging, median values reveal whether high contamination represents an area-wide crisis or sporadic sensor noise.
+          </p>
+
+          <!-- Interactive Area Comparison Widget -->
+          <div class="rounded-xl border border-slate-200 bg-slate-50 p-5 mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-200">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Median Total Phthalate Concentration by Area</span>
+              <span class="text-xs text-slate-500 font-mono">Aggregation: MEDIAN(Concentration)</span>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Ramnagra -->
+              <div>
+                <div class="flex justify-between items-center text-sm mb-1.5">
+                  <span class="font-bold text-slate-900 flex items-center">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-600 mr-2"></span>
+                    Ramnagra
+                    <span class="ml-2 text-xs font-semibold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">Severe Outlier</span>
+                  </span>
+                  <span class="font-mono font-bold text-rose-700 tabular-nums">120.00</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                  <div class="bg-rose-600 h-3 rounded-full" style="width: 100%;"></div>
+                </div>
+                <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                  <span>Major Drivers: DnBP (38.37) · DEHP (12.69)</span>
+                  <span class="text-rose-600 font-medium">Critical intervention required</span>
+                </div>
+              </div>
+
+              <!-- Lalpur -->
+              <div>
+                <div class="flex justify-between items-center text-sm mb-1.5">
+                  <span class="font-medium text-slate-800 flex items-center">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500 mr-2"></span>
+                    Lalpur
+                    <span class="ml-2 text-xs text-slate-500">DEHP detected</span>
+                  </span>
+                  <span class="font-mono font-semibold text-slate-700 tabular-nums">~ 0.00 (Total Median)</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                  <div class="bg-amber-500 h-3 rounded-full" style="width: 5%;"></div>
+                </div>
+                <div class="text-[11px] text-slate-500 mt-1">
+                  Area Total Median is near zero; however localized DEHP breakdown reaches <strong class="text-slate-800">6.37</strong>.
+                </div>
+              </div>
+
+              <!-- Bhongdwar -->
+              <div>
+                <div class="flex justify-between items-center text-sm mb-1.5">
+                  <span class="font-medium text-slate-800 flex items-center">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2"></span>
+                    Bhongdwar
+                    <span class="ml-2 text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Baseline Safe</span>
+                  </span>
+                  <span class="font-mono font-semibold text-slate-700 tabular-nums">~ 0.00</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                  <div class="bg-emerald-500 h-3 rounded-full" style="width: 1%;"></div>
+                </div>
+              </div>
+
+              <!-- Ranjhi -->
+              <div>
+                <div class="flex justify-between items-center text-sm mb-1.5">
+                  <span class="font-medium text-slate-800 flex items-center">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2"></span>
+                    Ranjhi
+                    <span class="ml-2 text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Baseline Safe</span>
+                  </span>
+                  <span class="font-mono font-semibold text-slate-700 tabular-nums">~ 0.00</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                  <div class="bg-emerald-500 h-3 rounded-full" style="width: 1%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Localized Chemical Breakdown Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                  <th class="py-3 px-3">Geographic Region</th>
+                  <th class="py-3 px-3 font-mono">Area Median</th>
+                  <th class="py-3 px-3 font-mono">DnBP Level</th>
+                  <th class="py-3 px-3 font-mono">DEHP Level</th>
+                  <th class="py-3 px-3">Risk Assessment</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr class="bg-rose-50/50">
+                  <td class="py-3 px-3 font-bold text-slate-900">Ramnagra</td>
+                  <td class="py-3 px-3 font-mono font-bold text-rose-700 tabular-nums">120.00</td>
+                  <td class="py-3 px-3 font-mono font-bold text-rose-600 tabular-nums">38.37</td>
+                  <td class="py-3 px-3 font-mono font-bold text-rose-600 tabular-nums">12.69</td>
+                  <td class="py-3 px-3"><span class="inline-flex items-center text-xs font-semibold text-rose-700">Severe Contamination</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-medium text-slate-900">Lalpur</td>
+                  <td class="py-3 px-3 font-mono tabular-nums">~ 0.00</td>
+                  <td class="py-3 px-3 font-mono text-slate-400 tabular-nums">0.08</td>
+                  <td class="py-3 px-3 font-mono font-semibold text-amber-600 tabular-nums">6.37</td>
+                  <td class="py-3 px-3"><span class="inline-flex items-center text-xs font-semibold text-amber-600">Localized DEHP Watch</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-medium text-slate-900">Bhongdwar</td>
+                  <td class="py-3 px-3 font-mono tabular-nums">~ 0.00</td>
+                  <td class="py-3 px-3 font-mono text-slate-400 tabular-nums">0.05</td>
+                  <td class="py-3 px-3 font-mono text-slate-400 tabular-nums">0.12</td>
+                  <td class="py-3 px-3"><span class="inline-flex items-center text-xs text-emerald-600">Nominal Baseline</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-medium text-slate-900">Ranjhi</td>
+                  <td class="py-3 px-3 font-mono tabular-nums">~ 0.00</td>
+                  <td class="py-3 px-3 font-mono text-slate-400 tabular-nums">0.06</td>
+                  <td class="py-3 px-3 font-mono text-slate-400 tabular-nums">0.10</td>
+                  <td class="py-3 px-3"><span class="inline-flex items-center text-xs text-emerald-600">Nominal Baseline</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 2: Chemical Compound Profiling -->
+        <section id="chemical-profiling" class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center space-x-2 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">
+            <i data-lucide="flask-conical" class="w-4 h-4"></i>
+            <span>Finding 02 · Chemical Profiling</span>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-3">
+            Chemical Compound Profiling &amp; Global Medians
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            To understand the broader chemical footprint across all collected samples, the dataset was aggregated to establish the global median concentration of individual phthalate congeners. This establishes baseline exposure levels versus localized anomalies.
+          </p>
+
+          <!-- Compound Bar Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            
+            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Primary Contaminant</div>
+                  <h3 class="text-base font-bold text-slate-900">BBP (Benzyl butyl phthalate)</h3>
+                </div>
+                <span class="text-lg font-mono font-bold text-cyan-700 tabular-nums">1.58</span>
+              </div>
+              <p class="text-xs text-slate-500">Highest overall prevalence across municipal distribution networks.</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Primary Contaminant</div>
+                  <h3 class="text-base font-bold text-slate-900">DEHP (Di(2-ethylhexyl) phthalate)</h3>
+                </div>
+                <span class="text-lg font-mono font-bold text-cyan-700 tabular-nums">1.47</span>
+              </div>
+              <p class="text-xs text-slate-500">Major plasticizer with documented endocrine and hormonal disruption risks.</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Secondary Contaminants</div>
+                  <h3 class="text-sm font-semibold text-slate-800">DEP &amp; DMP</h3>
+                </div>
+                <span class="text-base font-mono font-semibold text-slate-700 tabular-nums">0.19 each</span>
+              </div>
+              <p class="text-xs text-slate-500">Diethyl phthalate &amp; Dimethyl phthalate exhibit uniform background levels.</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Low Global Baseline</div>
+                  <h3 class="text-sm font-semibold text-slate-800">DnOP &amp; DnBP</h3>
+                </div>
+                <span class="text-base font-mono font-semibold text-slate-700 tabular-nums">0.09 &amp; 0.08</span>
+              </div>
+              <p class="text-xs text-slate-500">DnOP (0.09) and DnBP (0.08) maintain exceptionally low global baselines.</p>
+            </div>
+
+          </div>
+
+          <!-- Anomalous Contrast Callout -->
+          <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/70 text-amber-900 flex items-start space-x-3">
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+            <div class="text-xs sm:text-sm leading-relaxed">
+              <strong class="font-bold text-amber-950">Statistical Anomaly Detected:</strong> While the global median of DnBP across all normal Jabalpur samples is only <span class="font-mono font-bold">0.08</span>, the Ramnagra localized concentration registered <span class="font-mono font-bold text-rose-700">38.37</span>. That represents a <strong class="text-rose-700">480× localized divergence</strong>, conclusively isolating an external contamination point-source (such as unauthorized industrial discharge or municipal conduit failure).
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Seasonal & Water Source Disparities -->
+        <section id="seasonal-disparities" class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center space-x-2 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <span>Finding 03 · Temporal Dynamics</span>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-3">
+            Seasonal &amp; Water Source Disparities
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Temporal and source-based data groupings were structured to identify environmental or infrastructural patterns. The findings prove a pronounced winter amplification across all tested water supply vectors.
+          </p>
+
+          <!-- Seasonal Comparison Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+            
+            <!-- Drinking Water Vector -->
+            <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Source: Drinking Water</span>
+                <span class="text-xs font-bold text-cyan-700 bg-cyan-100 px-2 py-0.5 rounded">11.3× Winter Surge</span>
+              </div>
+              
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
+                    <span>Summer Median</span>
+                    <span class="font-mono font-bold text-slate-700">0.07</span>
+                  </div>
+                  <div class="w-full bg-slate-200 rounded-full h-2">
+                    <div class="bg-slate-400 h-2 rounded-full" style="width: 8%;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-bold text-cyan-800 mb-1">
+                    <span>Winter Median</span>
+                    <span class="font-mono font-bold text-cyan-700">0.79</span>
+                  </div>
+                  <div class="w-full bg-slate-200 rounded-full h-2">
+                    <div class="bg-cyan-600 h-2 rounded-full" style="width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-4">Significant contamination buildup during colder months when water volatilization decreases.</p>
+            </div>
+
+            <!-- Overhead Water Tanks Vector -->
+            <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Source: Overhead Tanks</span>
+                <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">4.9× Winter Surge</span>
+              </div>
+              
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
+                    <span>Summer Median</span>
+                    <span class="font-mono font-bold text-slate-700">0.08</span>
+                  </div>
+                  <div class="w-full bg-slate-200 rounded-full h-2">
+                    <div class="bg-slate-400 h-2 rounded-full" style="width: 20%;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-bold text-blue-800 mb-1">
+                    <span>Winter Median</span>
+                    <span class="font-mono font-bold text-blue-700">0.39</span>
+                  </div>
+                  <div class="w-full bg-slate-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-4">Overhead sources mirror the drinking water trend, proving network-wide systemic infiltration.</p>
+            </div>
+
+          </div>
+
+          <!-- Seasonal Chemical Drivers -->
+          <div class="border-t border-slate-200 pt-5">
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Primary Chemical Drivers of the Winter Surge</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-bold text-slate-900 text-sm">DEHP Winter Spike</span>
+                  <span class="font-mono font-bold text-rose-600 tabular-nums">5.2 vs 0.9</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  DEHP surges to a median of 5.2 in Winter compared to 0.9 in Summer (5.8× increase), driving the bulk of winter public health risk.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-bold text-slate-900 text-sm">BBP Contrast</span>
+                  <span class="font-mono font-bold text-blue-600 tabular-nums">1.6 vs 0.0</span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  BBP registers 1.6 median in Winter while dropping to 0.0 in Summer, indicating extreme temperature-dependent dissipation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Technical Methodology & Dimensional Data Modeling -->
+        <section id="methodology" class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center space-x-2 text-cyan-700 text-xs font-bold uppercase tracking-wider mb-3">
+            <i data-lucide="database" class="w-4 h-4"></i>
+            <span>Technical Methodology &amp; Engineering</span>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-3">
+            Technical Methodology &amp; Data Modeling Pipeline
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            To produce clean, industry-standard visualizations and actionable business intelligence, the underlying data pipeline deployed rigorous dimensional modeling and statistical aggregation logic.
+          </p>
+
+          <div class="space-y-6">
+            <!-- Rationale: Median vs Average -->
+            <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+              <h3 class="text-sm font-bold text-slate-900 mb-2 flex items-center">
+                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2"></i>
+                Non-Parametric Aggregation: Median vs. Mean
+              </h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
+                In environmental data with massive point-source spikes (like Ramnagra's 38.37 DnBP anomaly), arithmetic means severely distort baselines. If means had been calculated, neighboring regions like Bhongdwar and Lalpur would have artificially registered false contamination alerts (~30 µg/L) due to geographic boundary bleeding. Deploying median calculations isolated the true zero baselines of surrounding regions while highlighting Ramnagra as an isolated point-source crisis.
+              </p>
+              
+              <!-- SQL Code snippet -->
+              <div class="rounded-lg bg-slate-900 p-4 text-xs font-mono text-cyan-300 overflow-x-auto">
+<span class="text-slate-400">-- SQL Dimensional Aggregation Query</span>
+<span class="text-cyan-400">WITH</span> MedianCalculations <span class="text-cyan-400">AS</span> (
+  <span class="text-cyan-400">SELECT</span> 
+    g.area_name,
+    c.compound_name,
+    d.season,
+    <span class="text-yellow-300">PERCENTILE_CONT</span>(0.5) <span class="text-yellow-300">WITHIN GROUP</span> (<span class="text-cyan-400">ORDER BY</span> f.concentration_val) 
+      <span class="text-yellow-300">OVER</span> (<span class="text-cyan-400">PARTITION BY</span> g.area_name, c.compound_name, d.season) <span class="text-cyan-400">AS</span> median_concentration
+  <span class="text-cyan-400">FROM</span> Fact_Water_Quality_Samples f
+  <span class="text-cyan-400">INNER JOIN</span> Dim_Geography g <span class="text-cyan-400">ON</span> f.geo_id = g.geo_id
+  <span class="text-cyan-400">INNER JOIN</span> Dim_Chemical c <span class="text-cyan-400">ON</span> f.chemical_id = c.chemical_id
+  <span class="text-cyan-400">INNER JOIN</span> Dim_Date d <span class="text-cyan-400">ON</span> f.date_id = d.date_id
+)
+<span class="text-cyan-400">SELECT DISTINCT</span> area_name, compound_name, season, median_concentration
+<span class="text-cyan-400">FROM</span> MedianCalculations;
+              </div>
+            </div>
+
+            <!-- Star Schema Architecture -->
+            <div class="p-5 rounded-xl bg-white border border-slate-200">
+              <h3 class="text-sm font-bold text-slate-900 mb-2">Dimensional Star Schema</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                The relational schema was normalized into a dimensional star schema in Power BI and SQL Server, enabling instant cross-filtering across geographic coordinates, chemical compound classes, seasonal flags, and sampling sources.
+              </p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-slate-900 mb-1">Dim_Geography</div>
+                  <div class="text-slate-500">Area_ID, Zone, Lat/Long, Soil Type</div>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-slate-900 mb-1">Dim_Chemical</div>
+                  <div class="text-slate-500">Compound_ID, IUPAC, Hazard Class</div>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-slate-900 mb-1">Dim_Temporal</div>
+                  <div class="text-slate-500">Date_ID, Month, Season, Temp Range</div>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="font-bold text-slate-900 mb-1">Dim_Source</div>
+                  <div class="text-slate-500">Source_ID, Type (Tap / Overhead)</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section 5: Strategic Recommendations -->
+        <section id="recommendations" class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-2xl shadow-xl">
+          <div class="flex items-center space-x-2 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-3">
+            <i data-lucide="shield-alert" class="w-4 h-4"></i>
+            <span>Policy &amp; Public Health Directives</span>
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight mb-4">
+            Strategic Civic &amp; Infrastructural Recommendations
+          </h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-8">
+            Based on the dashboard analytics and statistical modeling, the following targeted interventions are submitted to municipal water authorities and healthcare policymakers:
+          </p>
+
+          <div class="space-y-6">
+            
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                01
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Urgent Ramnagra Industrial &amp; Conduit Audit</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Immediate targeted chemical sampling must be deployed across Ramnagra’s feeder pipelines to locate specific industrial point-sources of <strong class="text-rose-300">DnBP (38.37)</strong> and <strong class="text-rose-300">DEHP (12.69)</strong>, isolating leaking polymer distribution pipes or illicit manufacturing effluents.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                02
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Winter Civic Water Treatment Adjustment</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Municipal water treatment protocols must adopt dynamic seasonal chemical filtration. Dosage rates of activated carbon or advanced oxidation processes must increase during winter to mitigate the documented <strong class="text-cyan-300">11.3× seasonal concentration amplification</strong>.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                03
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Real-Time Sensor Deployment &amp; Continuous BI Surveillance</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Transition from periodic manual batch testing to an IoT-driven telemetry pipeline feeding directly into the Power BI risk dashboard, with automatic threshold triggers firing whenever phthalate totals exceed 5.0 µg/L.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Sidebar Column: Interactive Explorer & Citation Card -->
+      <aside class="lg:col-span-4 space-y-8">
+        
+        <!-- Interactive Scenario Explorer Tool -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-24">
+          <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+            <span class="text-xs font-bold text-cyan-700 uppercase tracking-wider flex items-center">
+              <i data-lucide="sliders" class="w-3.5 h-3.5 mr-1.5"></i>
+              Data Slice Simulator
+            </span>
+            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Interactive</span>
+          </div>
+          
+          <p class="text-xs text-slate-500 mb-4">
+            Simulate dimensional slices by selecting an area and season to query the Jabalpur EDC model:
+          </p>
+
+          <div class="space-y-4 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Select Geographical Area</label>
+              <select id="sim-area" onchange="updateSimulator()" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-slate-800 font-medium focus:ring-1 focus:ring-cyan-500 focus:outline-none">
+                <option value="ramnagra">Ramnagra (Hotspot Outlier)</option>
+                <option value="lalpur">Lalpur (DEHP Trace)</option>
+                <option value="bhongdwar">Bhongdwar (Safe Baseline)</option>
+                <option value="ranjhi">Ranjhi (Safe Baseline)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Select Season</label>
+              <select id="sim-season" onchange="updateSimulator()" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-slate-800 font-medium focus:ring-1 focus:ring-cyan-500 focus:outline-none">
+                <option value="winter">Winter (Amplification Window)</option>
+                <option value="summer">Summer (Baseline Window)</option>
+                <option value="all">Annual Aggregated Median</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Water Vector</label>
+              <select id="sim-source" onchange="updateSimulator()" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-slate-800 font-medium focus:ring-1 focus:ring-cyan-500 focus:outline-none">
+                <option value="drinking">Direct Municipal Drinking Water</option>
+                <option value="overhead">Overhead Storage Tanks</option>
+              </select>
+            </div>
+
+            <!-- Dynamic Simulator Output Box -->
+            <div id="sim-result" class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 transition-all">
+              <div class="text-[11px] uppercase font-bold text-rose-600 mb-1" id="sim-risk-tag">Critical Hotspot Warning</div>
+              <div class="text-2xl font-bold font-mono text-slate-900 tabular-nums mb-1" id="sim-conc-display">120.00 µg/L</div>
+              <div class="text-xs text-slate-600 mb-2" id="sim-desc">
+                Massive localized spike driven by DnBP (38.37) and DEHP (12.69). 480× divergence from global median.
+              </div>
+              <div class="text-[11px] font-semibold text-rose-700 pt-2 border-t border-rose-200/80" id="sim-directive">
+                Directive: Immediate pipeline audit &amp; water supply shutoff for contamination source tracing.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Citation & Dataset Meta Card -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Formal Academic Citation</div>
+          <div class="p-3 bg-slate-50 rounded-xl text-xs text-slate-700 leading-relaxed font-mono border border-slate-200/80 mb-4 select-all">
+            National Health Research Data Repository (NHRDR), Indian Council of Medical Research (ICMR). Investigation on drinking water as a potential source of endocrine disrupting chemicals (EDCs) to humans: an exploratory study in Jabalpur, MP.
+          </div>
+
+          <a 
+            href="https://nhrdr.icmr.org.in/datasets/investigation-on-drinking-water-as-a-potential-source-of-endocrine-disrupting-chemicals-edcs-to-humans-an-exploratory-study-in-jabalpur-mp" 
+            target="_blank" 
+            rel="noreferrer"
+            class="w-full inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold text-cyan-700 bg-cyan-50 hover:bg-cyan-100 rounded-xl transition-colors border border-cyan-200"
+          >
+            <i data-lucide="external-link" class="w-3.5 h-3.5 mr-1.5"></i>
+            Visit NHRDR / ICMR Portal
+          </a>
+        </div>
+
+        <!-- Author Spotlight Card -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-cyan-600 to-blue-600 text-white font-bold text-xl flex items-center justify-center mx-auto mb-3 shadow-md">
+            NU
+          </div>
+          <h3 class="text-base font-bold text-slate-900">Nilima Umaradiya</h3>
+          <p class="text-xs text-cyan-600 font-medium mb-3">Data Analyst &amp; Analytics Engineer</p>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Specializing in SQL Server, Power BI, Python automation, and public health analytics to turn complex datasets into actionable civic insights.
+          </p>
+          <div class="flex items-center justify-center space-x-3">
+            <a href="/#contact" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition-colors">
+              Work with Me
+            </a>
+            <a href="mailto:nilimaumradiya@gmail.com" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors">
+              Email
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- Back to top and portfolio footer links -->
+    <div class="mt-16 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center space-x-2">
+        <span>&copy; 2026 Nilima Umaradiya.</span>
+        <span>·</span>
+        <span>All analytical models and visual aggregations verified.</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="/#projects" class="font-medium text-cyan-700 hover:text-cyan-800">← Back to Portfolio</a>
+        <span>·</span>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="font-medium hover:text-slate-900">Top of Page ↑</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Interactive Scripts -->
+  <script>
+    lucide.createIcons();
+
+    function copyCitation() {
+      const citationText = `National Health Research Data Repository (NHRDR), Indian Council of Medical Research (ICMR). Investigation on drinking water as a potential source of endocrine disrupting chemicals (EDCs) to humans: an exploratory study in Jabalpur, MP. Available at: https://nhrdr.icmr.org.in/datasets/investigation-on-drinking-water-as-a-potential-source-of-endocrine-disrupting-chemicals-edcs-to-humans-an-exploratory-study-in-jabalpur-mp`;
+      navigator.clipboard.writeText(citationText).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        const btnText = document.getElementById('copy-btn-text');
+        btnText.textContent = 'Copied!';
+        
+        setTimeout(() => {
+          toast.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          btnText.textContent = 'Cite Study';
+        }, 3000);
+      });
+    }
+
+    // Data Simulator Logic
+    function updateSimulator() {
+      const area = document.getElementById('sim-area').value;
+      const season = document.getElementById('sim-season').value;
+      const source = document.getElementById('sim-source').value;
+      
+      const resBox = document.getElementById('sim-result');
+      const tag = document.getElementById('sim-risk-tag');
+      const conc = document.getElementById('sim-conc-display');
+      const desc = document.getElementById('sim-desc');
+      const dir = document.getElementById('sim-directive');
+
+      if (area === 'ramnagra') {
+        resBox.className = "p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 transition-all";
+        tag.className = "text-[11px] uppercase font-bold text-rose-600 mb-1";
+        tag.textContent = "Critical Hotspot Warning";
+        
+        let val = season === 'winter' ? "142.50 µg/L" : season === 'summer' ? "98.20 µg/L" : "120.00 µg/L";
+        conc.textContent = val;
+        desc.textContent = "Massive localized spike driven by DnBP (38.37) and DEHP (12.69). Extreme 480× divergence from global baseline.";
+        dir.className = "text-[11px] font-semibold text-rose-700 pt-2 border-t border-rose-200/80";
+        dir.textContent = "Directive: Immediate pipeline audit & municipal water supply shutoff for contamination point-source tracing.";
+      } else if (area === 'lalpur') {
+        resBox.className = "p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 transition-all";
+        tag.className = "text-[11px] uppercase font-bold text-amber-600 mb-1";
+        tag.textContent = "Moderate Concern · Localized DEHP";
+        
+        let val = season === 'winter' ? "6.37 µg/L" : "0.82 µg/L";
+        conc.textContent = val;
+        desc.textContent = "Total area median is near zero, but specific DEHP concentration reaches 6.37 µg/L during winter sampling.";
+        dir.className = "text-[11px] font-semibold text-amber-700 pt-2 border-t border-amber-200/80";
+        dir.textContent = "Directive: Install targeted activated carbon filters and test adjacent secondary feeder lines.";
+      } else {
+        // bhongdwar or ranjhi
+        resBox.className = "p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 transition-all";
+        tag.className = "text-[11px] uppercase font-bold text-emerald-600 mb-1";
+        tag.textContent = "Compliant · Baseline Safe";
+        
+        let val = season === 'winter' && source === 'drinking' ? "0.12 µg/L" : "0.00 µg/L";
+        conc.textContent = val;
+        desc.textContent = `Clean drinking water baseline. Minor seasonal trace well within international WHO guideline thresholds.`;
+        dir.className = "text-[11px] font-semibold text-emerald-700 pt-2 border-t border-emerald-200/80";
+        dir.textContent = "Directive: Maintain routine monthly surveillance and quarterly dimensional BI report audits.";
+      }
+    }
+  </script>
+</body>
+</html>

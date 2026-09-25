@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spatial and Seasonal Assessment of Phthalate Contamination in Water Samples</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        background: #ffffff;
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.7;
+    }
+    .container {
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 45px 30px 70px;
+    }
+    h1, h2, h3 {
+        color: #145da0;
+        line-height: 1.3;
+    }
+    h1 {
+        font-size: 34px;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    h2 {
+        font-size: 25px;
+        margin-top: 45px;
+        border-bottom: 2px solid #145da0;
+        padding-bottom: 8px;
+    }
+    h3 {
+        font-size: 19px;
+        margin-top: 28px;
+    }
+    p { margin: 12px 0; }
+    .subtitle {
+        text-align: center;
+        font-size: 17px;
+        margin-bottom: 35px;
+    }
+    .abstract {
+        border-left: 4px solid #145da0;
+        padding: 18px 22px;
+        margin: 25px 0;
+        background: #f8fbff;
+    }
+    .keywords {
+        margin-top: 18px;
+        font-style: italic;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0 30px;
+        font-size: 15px;
+    }
+    th {
+        background: #145da0;
+        color: #ffffff;
+        text-align: left;
+        padding: 11px;
+    }
+    td {
+        border: 1px solid #cccccc;
+        padding: 10px;
+    }
+    tr:nth-child(even) td {
+        background: #f7f7f7;
+    }
+    ul, ol {
+        padding-left: 25px;
+    }
+    li { margin: 7px 0; }
+    .note {
+        border: 1px solid #cccccc;
+        padding: 15px 18px;
+        margin: 20px 0;
+        background: #fafafa;
+    }
+    .reference {
+        margin: 10px 0;
+    }
+    .footer {
+        margin-top: 50px;
+        padding-top: 20px;
+        border-top: 1px solid #cccccc;
+        font-size: 14px;
+    }
+    @media (max-width: 700px) {
+        .container { padding: 25px 18px 50px; }
+        h1 { font-size: 27px; }
+        h2 { font-size: 22px; }
+        table { font-size: 13px; }
+        th, td { padding: 7px; }
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Spatial and Seasonal Assessment of Phthalate Contamination in Water Samples</h1>
+
+<p class="subtitle">
+An Exploratory Analysis of Samples from Four Study Areas
+</p>
+
+<div class="abstract">
+<h2>Abstract</h2>
+<p>
+Phthalates are synthetic chemicals widely used as plasticizers and additives in consumer and industrial products and are increasingly recognized as environmental contaminants of concern. Their occurrence in water is relevant because drinking water and source water can contribute to human exposure. This study presents an exploratory assessment of six phthalates—dimethyl phthalate (DMP), diethyl phthalate (DEP), di-n-butyl phthalate (DnBP), benzyl butyl phthalate (BBP), bis(2-ethylhexyl) phthalate (DEHP), and di-n-octyl phthalate (DnOP)—measured in 80 water samples collected from four study areas: Bhongdwar, Lalpur, Ramnagra, and Ranjhi.
+</p>
+<p>
+The dataset demonstrated substantial variation among chemicals, areas, and seasons. DEHP showed the greatest concentration range, with a maximum observed value of 8,382.90 µg/L and a median of 1.46 µg/L among valid measurements. DnBP also showed substantial variability, with a maximum concentration of 563.86 µg/L. Across all valid measurements, DEHP contributed approximately 92.8% of the summed measured phthalate concentration. Winter samples showed markedly higher total measured phthalate concentrations than summer samples, with median values of 8.03 and 1.09 µg/L, respectively.
+</p>
+<p>
+A Mann–Whitney U test indicated a statistically significant difference in sample-level total concentrations between seasons (p &lt; 0.001), while the difference between drinking-water and overhead-water categories was not statistically significant in this exploratory dataset (p = 0.406). A Kruskal–Wallis test indicated a statistically significant difference among study areas (p = 0.022).
+</p>
+<p>
+Data completeness varied substantially among compounds. DnBP had 96.2% valid observations and DEP 92.5%, whereas BBP had only 18.8% valid observations. The findings should be considered exploratory rather than a definitive population-wide health-risk assessment because of the limited sample size, incomplete measurements, and absence of complete sampling and laboratory methodology.
+</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>
+Phthalates are a broad class of synthetic esters of phthalic acid that have been extensively used as plasticizers and additives in polymers, coatings, adhesives, personal-care products, pharmaceuticals, and other industrial and consumer applications. Their widespread use has resulted in their detection in environmental media including water, air, soil, sediment, dust, and food.
+</p>
+<p>
+The environmental occurrence of phthalates is particularly relevant to drinking-water surveillance. Drinking-water and its sources may contain multiple chemicals originating from both natural processes and human activity, making chemical monitoring important for environmental and public-health management.
+</p>
+
+
+<h2>2. Materials and Methods</h2>
+
+<h3>2.1 Study Dataset</h3>
+<p>
+The analysis was conducted using a dataset containing 80 water-sample records. Each record included a household/sample identifier, season, study area, water category, and measurements for six phthalates.
+</p>
+
+<ul>
+<li>Bhongdwar</li>
+<li>Lalpur</li>
+<li>Ramnagra</li>
+<li>Ranjhi</li>
+</ul>
+
+<p>The dataset contained 45 summer observations and 35 winter observations.</p>
+
+<h3>2.2 Target Compounds</h3>
+<table>
+<thead>
+<tr><th>Abbreviation</th><th>Compound</th></tr>
+</thead>
+<tbody>
+<tr><td>DMP</td><td>Dimethyl phthalate</td></tr>
+<tr><td>DEP</td><td>Diethyl phthalate</td></tr>
+<tr><td>DnBP</td><td>Di-n-butyl phthalate</td></tr>
+<tr><td>BBP</td><td>Benzyl butyl phthalate</td></tr>
+<tr><td>DEHP</td><td>Bis(2-ethylhexyl) phthalate</td></tr>
+<tr><td>DnOP</td><td>Di-n-octyl phthalate</td></tr>
+</tbody>
+</table>
+
+<h3>2.3 Data Cleaning</h3>
+<p>
+The raw dataset contained the value <strong>9999</strong> in several chemical fields. This value was treated as a special/missing code rather than as a measured concentration. Blank observations were also treated as missing. Spelling variants of the drinking-water category were standardized.
+</p>
+
+<h3>2.4 Statistical Analysis</h3>
+<p>
+Descriptive statistics included the number of valid observations, median, arithmetic mean, maximum concentration, percentage of valid measurements, and sample-level total measured phthalate concentration.
+</p>
+<p>
+Because the dataset displayed strong right-skew and extreme observations, median concentrations were emphasized alongside means. Mann–Whitney U tests were used for exploratory comparisons between seasons and water categories, while the Kruskal–Wallis test was used to examine differences among study areas.
+</p>
+
+<h2>3. Results</h2>
+
+<h3>3.1 Overall Chemical Distribution</h3>
+
+<img 
+  src="assets/visual1.bmp" 
+  alt="EDC Water Quality Study"
+  class="w-full h-44 object-cover rounded-xl"
+/>
+<table>
+<thead>
+<tr>
+<th>Compound</th><th>Valid Observations</th><th>Median (µg/L)</th><th>Mean (µg/L)</th><th>Maximum (µg/L)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>DMP</td><td>44</td><td>0.191</td><td>4.631</td><td>35.426</td></tr>
+<tr><td>DEP</td><td>74</td><td>0.055</td><td>0.205</td><td>2.860</td></tr>
+<tr><td>DnBP</td><td>77</td><td>0.080</td><td>27.562</td><td>563.862</td></tr>
+<tr><td>BBP</td><td>15</td><td>1.581</td><td>1.339</td><td>2.948</td></tr>
+<tr><td>DEHP</td><td>71</td><td>1.461</td><td>428.901</td><td>8,382.900</td></tr>
+<tr><td>DnOP</td><td>67</td><td>0.075</td><td>0.283</td><td>3.168</td></tr>
+</tbody>
+</table>
+
+<p>
+DEHP exhibited the largest concentration range and the strongest influence on total measured concentrations. The sum of all valid measurements across the six chemicals was approximately 32,832 µg/L, of which approximately 30,452 µg/L was attributable to DEHP. Thus, DEHP accounted for approximately 92.8% of the aggregate measured concentration in this dataset.
+</p>
+
+<div class="note">
+<strong>Interpretation:</strong> The 92.8% value represents the share of the aggregate measured concentration, not 92.8% of environmental or health risk. Toxicological potency, exposure pathways, and regulatory criteria differ among compounds.
+</div>
+
+<h2>4. Spatial Variation</h2>
+<img 
+  src="assets/visual2.bmp" 
+  alt="EDC Water Quality Study"
+  class="w-full h-44 object-cover rounded-xl"
+/>
+<table>
+<thead>
+<tr><th>Area</th><th>Valid Sample Totals</th><th>Median (µg/L)</th><th>Mean (µg/L)</th><th>Maximum (µg/L)</th></tr>
+</thead>
+<tbody>
+<tr><td>Bhongdwar</td><td>23</td><td>1.937</td><td>1,118.385</td><td>8,505.519</td></tr>
+<tr><td>Lalpur</td><td>18</td><td>1.274</td><td>160.491</td><td>2,530.276</td></tr>
+<tr><td>Ramnagra</td><td>17</td><td>8.032</td><td>246.846</td><td>2,798.001</td></tr>
+<tr><td>Ranjhi</td><td>19</td><td>0.951</td><td>1.272</td><td>3.077</td></tr>
+</tbody>
+</table>
+
+<p>
+The four study areas showed substantial differences in total measured phthalate concentrations. The highest sample-level maximum occurred in Bhongdwar, while Ramnagra showed the highest median sample-level total concentration.
+</p>
+<p>
+The Kruskal–Wallis test indicated a statistically significant difference among the four study areas (H = 9.61, p = 0.022). This indicates spatial heterogeneity in the observed sample concentrations, although additional pairwise and longitudinal sampling would be required to determine specific area-to-area differences.
+</p>
+
+<h2>5. Seasonal Variation</h2>
+
+<table>
+<thead>
+<tr><th>Season</th><th>Valid Sample Totals</th><th>Median (µg/L)</th><th>Mean (µg/L)</th><th>Maximum (µg/L)</th></tr>
+</thead>
+<tbody>
+<tr><td>Summer</td><td>44</td><td>1.093</td><td>6.537</td><td>79.726</td></tr>
+<tr><td>Winter</td><td>33</td><td>8.032</td><td>986.200</td><td>8,505.519</td></tr>
+</tbody>
+</table>
+
+<p>
+The winter median was approximately 7.4 times the summer median. The difference was statistically significant according to the Mann–Whitney U test (U = 334, p &lt; 0.001).
+</p>
+
+<h3>DEHP Seasonal Pattern</h3>
+<table>
+<thead>
+<tr><th>Season</th><th>Median (µg/L)</th><th>Mean (µg/L)</th><th>Maximum (µg/L)</th></tr>
+</thead>
+<tbody>
+<tr><td>Summer</td><td>0.929</td><td>6.829</td><td>79.355</td></tr>
+<tr><td>Winter</td><td>5.197</td><td>914.924</td><td>8,382.900</td></tr>
+</tbody>
+</table>
+
+<h3>DnBP Seasonal Pattern</h3>
+<table>
+<thead>
+<tr><th>Season</th><th>Median (µg/L)</th><th>Mean (µg/L)</th><th>Maximum (µg/L)</th></tr>
+</thead>
+<tbody>
+<tr><td>Summer</td><td>0.069</td><td>0.448</td><td>16.378</td></tr>
+<tr><td>Winter</td><td>0.501</td><td>63.714</td><td>563.862</td></tr>
+</tbody>
+</table>
+
+<p>
+The seasonal pattern may reflect differences in source conditions, water storage, environmental transport, household practices, or other factors. The current dataset cannot distinguish among these mechanisms.
+</p>
+
+<h2>6. Drinking Water Versus Overhead Water</h2>
+
+<p>
+After standardizing category labels, the median total measured concentration was approximately 1.65 µg/L for drinking-water samples and 1.86 µg/L for overhead-water samples.
+</p>
+<p>
+The Mann–Whitney U test did not indicate a statistically significant difference between the two categories (U = 822, p = 0.406). Therefore, the available data do not provide sufficient evidence of a systematic difference between the two water categories.
+</p>
+
+<img src="assets/visual_05.png" alt="EDC Water Quality Study" style="max-width: 100%; height: auto; border-radius: 8px;" />
+
+<h2>7. Data Completeness</h2>
+
+<table>
+<thead>
+<tr><th>Compound</th><th>Valid Measurements</th><th>Valid Percentage</th></tr>
+</thead>
+<tbody>
+<tr><td>DMP</td><td>44 / 80</td><td>55.0%</td></tr>
+<tr><td>DEP</td><td>74 / 80</td><td>92.5%</td></tr>
+<tr><td>DnBP</td><td>77 / 80</td><td>96.2%</td></tr>
+<tr><td>BBP</td><td>15 / 80</td><td>18.8%</td></tr>
+<tr><td>DEHP</td><td>71 / 80</td><td>88.8%</td></tr>
+<tr><td>DnOP</td><td>67 / 80</td><td>83.8%</td></tr>
+</tbody>
+</table>
+
+<p>
+BBP represents the largest data-completeness limitation, with only 15 valid measurements out of 80. Its summary statistics should therefore be interpreted more cautiously than those of compounds with greater analytical coverage.
+</p>
+
+
+<h2>9. Regulatory Context for DEHP</h2>
+
+<p>
+The observed DEHP concentrations can be compared for context with the U.S. Environmental Protection Agency maximum contaminant level of 0.006 mg/L, equivalent to 6 µg/L, for DEHP in public drinking water in the United States.
+</p>
+<p>
+Of the 71 valid DEHP observations in this dataset, 22 observations (31.0%) were above 6 µg/L.
+</p>
+
+<div class="note">
+<strong>Important:</strong> This comparison is contextual only. The U.S. EPA benchmark applies within the U.S. regulatory framework and should not automatically be treated as the applicable drinking-water standard for the locations represented in this dataset. A measured concentration above a benchmark does not by itself establish an individual's health risk.
+</div>
+
+<h2>10. Discussion</h2>
+
+<h3>10.1 Dominance of DEHP</h3>
+<p>
+The most prominent analytical feature of the dataset was the dominance of DEHP in total measured concentration. DEHP is widely associated with PVC and other polymer applications, and its environmental occurrence is well documented. The high values observed in several samples warrant additional investigation into possible local sources, including plastic materials, water-storage infrastructure, piping, industrial activities, or other environmental pathways.
+</p>
+
+<h3>10.2 DnBP as a Secondary Contributor</h3>
+<p>
+DnBP showed a substantially lower median concentration than DEHP but a high maximum of approximately 563.86 µg/L. Its presence alongside DEHP suggests that future monitoring should investigate multiple potential phthalate sources rather than focusing exclusively on a single chemical.
+</p>
+
+<h3>10.3 Seasonal Pattern</h3>
+<p>
+The winter increase was one of the clearest statistical findings. Possible explanations include changes in water consumption and storage, temperature, rainfall and runoff, environmental transport, source-water conditions, household water-handling practices, and contact between water and plastic infrastructure. These hypotheses require targeted follow-up studies.
+</p>
+
+<h3>10.4 Spatial Heterogeneity</h3>
+<p>
+The statistically significant difference among study areas indicates that location may be an important factor. Bhongdwar exhibited exceptionally high maximum and mean values because of several extreme winter observations, while Ramnagra had the highest median total concentration.
+</p>
+
+<h3>10.5 Drinking-Water and Overhead-Water Categories</h3>
+<p>
+The absence of a statistically significant difference between drinking-water and overhead-water samples does not demonstrate that the two categories have identical contamination profiles. Future studies should use matched sampling designs in which drinking-water and overhead-water samples are collected from the same households at the same time.
+</p>
+
+<h2>11. Implications for Water-Quality Monitoring</h2>
+
+<ol>
+<li><strong>Prioritize DEHP and DnBP:</strong> These compounds showed the largest concentration variability.</li>
+<li><strong>Increase BBP analytical coverage:</strong> Only 18.8% of BBP observations were valid.</li>
+<li><strong>Repeat sampling across seasons:</strong> The strong summer–winter difference supports repeated seasonal sampling.</li>
+<li><strong>Investigate extreme samples:</strong> High observations should be resampled to determine whether they are persistent.</li>
+<li><strong>Investigate source pathways:</strong> Future field studies should record water source, pipe material, storage tank material, storage duration, treatment, industrial proximity, land use, rainfall, temperature, and sampling conditions.</li>
+</ol>
+
+<h2>12. Limitations</h2>
+
+<ul>
+<li><strong>Small sample size:</strong> The study contains only 80 observations and four study areas.</li>
+<li><strong>Unequal sampling:</strong> The number of observations differs among areas and seasons.</li>
+<li><strong>Missing measurements:</strong> Chemical completeness varies substantially.</li>
+<li><strong>Special-value coding:</strong> The meaning of 9999 should be confirmed using original laboratory metadata.</li>
+<li><strong>Lack of detection-limit information:</strong> Missing values cannot necessarily be interpreted as concentrations below a particular detection threshold.</li>
+<li><strong>Lack of sampling protocol:</strong> Detailed sampling and laboratory QA/QC information was not included.</li>
+<li><strong>No exposure assessment:</strong> The study measures environmental concentrations and does not estimate human exposure or health risk.</li>
+<li><strong>No causal attribution:</strong> Spatial and seasonal patterns cannot establish contamination sources.</li>
+</ul>
+
+<h2>13. Conclusions</h2>
+
+<p>
+This exploratory analysis of 80 water samples identified substantial variability in six measured phthalates across four study areas and two seasons.
+</p>
+
+<ol>
+<li>DEHP was the dominant measured phthalate, accounting for approximately 92.8% of the aggregate valid concentration.</li>
+<li>DEHP showed the greatest concentration variability, with a maximum of 8,382.90 µg/L.</li>
+<li>DnBP showed a maximum concentration of 563.86 µg/L.</li>
+<li>Winter samples showed substantially higher total measured concentrations than summer samples, and the seasonal difference was statistically significant.</li>
+<li>Spatial variation among the four study areas was statistically significant.</li>
+<li>No statistically significant difference was observed between drinking-water and overhead-water categories.</li>
+<li>BBP had the lowest data completeness, with only 18.8% valid observations.</li>
+<li>Several extreme observations were concentrated in Bhongdwar during winter and warrant confirmatory sampling.</li>
+</ol>
+
+<p>
+Overall, the dataset provides evidence of meaningful spatial and seasonal variation in phthalate concentrations and identifies DEHP and DnBP as important targets for continued monitoring. Confirmatory sampling using standardized methodology, improved analytical completeness, repeated seasonal measurements, and source-specific information is required before drawing conclusions about long-term environmental contamination or human health risk.
+</p>
+
+
+<h2>15. Recommended Figures for the Research Paper</h2>
+
+<ol>
+<li><strong>Study-area distribution of water samples:</strong> Map showing the four study areas.</li>
+<li><strong>Distribution of six phthalates:</strong> Box-and-whisker plots showing medians, interquartile ranges, and extreme observations.</li>
+<li><strong>Spatial distribution of median phthalate concentration:</strong> Area × chemical heatmap.</li>
+<li><strong>Seasonal variation in total measured phthalate concentration:</strong> Summer versus winter distribution plots.</li>
+<li><strong>DEHP concentration by area and season:</strong> Distribution plot emphasizing winter observations.</li>
+<li><strong>Analytical data completeness:</strong> Percentage of valid measurements for each chemical.</li>
+<li><strong>Extreme concentration observations:</strong> Sample-level scatter plot identifying the highest observations.</li>
+</ol>
+
+<h2>References</h2>
+
+<div class="reference">
+1. World Health Organization. <em>Guidelines for Drinking-water Quality: Fourth Edition Incorporating the First, Second and Third Addenda.</em> WHO.
+</div>
+
+<div class="reference">
+2. World Health Organization. <em>Chemical Mixtures in Source Water and Drinking-water.</em> WHO.
+</div>
+
+<div class="reference">
+3. International Agency for Research on Cancer. <em>IARC Monographs Evaluation of the Carcinogenicity of Butyl Benzyl Phthalate, Dibutyl Phthalate, and Diisononyl Phthalate.</em>
+</div>
+
+
+<div class="footer">
+<strong>Note:</strong> This HTML presents an exploratory research-paper draft based on the supplied dataset. Before academic or journal submission, the sampling methodology, laboratory analytical method, detection limits, quality-control procedures, study location, sampling dates, and applicable local regulatory standards should be verified and added.
+</div>
+
+<h2>Technical Methodology & Data Modeling Pipeline</h2>
+<p>To produce clean, industry-standard visualizations and actionable business intelligence, the raw data in .dta format is first converted into CSV using a Python pipeline. The data pipeline then applies dimensional modeling and statistical aggregation logic to transform and structure the data for reliable analysis and visualization.</p>
+<p>Dimensional Star Schema
+The relational schema was normalized into a dimensional star schema in Power BI, enabling instant cross-filtering across geographic coordinates, chemical compound classes, seasonal flags, and sampling sources.</p>
+</div>
+</body>
+</html>
